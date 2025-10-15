@@ -227,7 +227,7 @@ var FilterList = new Class({
      *
      * @method Phaser.GameObjects.Components.FilterList#addBlend
      * @since 4.0.0
-     * @param {Phaser.Textures.Texture} [texture='__WHITE'] - The texture to apply to the view.
+     * @param {string} [texture='__WHITE'] - The texture to apply to the view.
      * @param {Phaser.BlendModes} [blendMode=Phaser.BlendModes.NORMAL] - The blend mode to apply to the view.
      * @param {number} [amount=1] - The amount of the blend effect to apply to the view. At 0, the original image is preserved. At 1, the blend texture is fully applied. The expected range is 0 to 1, but you can go outside that range for different effects.
      * @param {number[]} [color=[1, 1, 1, 1]] - The color to apply to the blend texture. Each value corresponds to a color channel in RGBA. The expected range is 0 to 1, but you can go outside that range for different effects.
