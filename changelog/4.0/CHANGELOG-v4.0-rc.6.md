@@ -1,4 +1,4 @@
-# Version 4.0 - Release Candidate 6
+# Version 4.0.0 - Release Candidate 6
 
 ## New Features
 
@@ -24,3 +24,9 @@
 - `ParallelFilters` filter memory leak eliminated (this would occur when both passes had active filters).
 - `TilemapGPULayer` now respects camera translation. Thanks @aroman!
 - Fixed a crash in `TweenBuilder` when the targets array contains null or undefined elements (thanks @aomsir)
+
+## Examples, Documentation, Beta Testing and TypeScript
+
+Thanks to the following for helping with the Phaser Examples, Beta Testing, Docs, and TypeScript definitions, either by reporting errors, fixing them, or helping author the docs:
+
+@chavaenc
