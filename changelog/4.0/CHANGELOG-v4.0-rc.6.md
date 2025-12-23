@@ -30,6 +30,7 @@
 - `TilemapGPULayer` now respects camera translation. Thanks @aroman!
 - Fixed a crash in `TweenBuilder` when the targets array contains null or undefined elements (thanks @aomsir)
 - The Loader `GetURL` function did not treat `file://` URLs as absolute. When a baseURL is set, it gets prepended to an already-absolute path, producing double-prefixed URLs (thanks @aomsir)
+- Fixed a bug where multiple `Timeline` events with `once` set to `true` would silently break the timeline and prevent all future events from firing. Fix #7147 (thanks @TomorrowToday)
 
 ## Examples, Documentation, Beta Testing and TypeScript
 
