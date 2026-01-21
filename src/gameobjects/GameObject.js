@@ -244,6 +244,24 @@ var GameObject = new Class({
          */
         this.ignoreDestroy = false;
 
+        /**
+         * Whether this Game Object has been destroyed.
+         * Check this property to avoid bugs caused by calling methods on a
+         * destroyed Game Object, e.g. in a Tween or Timer.
+         *
+         * This is a read-only property that is automatically set to `true`
+         * when the Game Object is destroyed.
+         * You should not set this property directly.
+         * It is set before `preDestroy` is called or the DESTROY event is emitted.
+         *
+         * @name Phaser.GameObjects.GameObject#isDestroyed
+         * @type {boolean}
+         * @default false
+         * @readonly
+         * @since 4.0.0
+         */
+        this.isDestroyed = false;
+
         // Initialize RenderSteps mixin.
         if (this.addRenderStep)
         {
@@ -977,6 +995,8 @@ var GameObject = new Class({
         }
 
         if (fromScene === undefined) { fromScene = false; }
+
+        this.isDestroyed = true;
 
         if (this.preDestroy)
         {
