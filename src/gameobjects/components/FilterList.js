@@ -838,7 +838,6 @@ var FilterList = new Class({
      * @method Phaser.GameObjects.Components.FilterList#addWipe
      * @since 4.0.0
      *
-     * @param {Phaser.Cameras.Scene2D.Camera} camera - The camera that owns this filter.
      * @param {number} [wipeWidth=0.1] - The width of the wipe effect. This value is normalized in the range 0 to 1.
      * @param {number} [direction=0] - The direction of the wipe effect. Either 0 (left to right, or top to bottom) or 1 (right to left, or bottom to top). Set in conjunction with the axis property.
      * @param {number} [axis=0] - The axis of the wipe effect. Either 0 (X) or 1 (Y). Set in conjunction with the direction property.
