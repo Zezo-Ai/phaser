@@ -7,6 +7,7 @@
 var ColorRamp = require('../../display/ColorRamp');
 var Vector2 = require('../../math/Vector2');
 var GradientFrag = require('../../renderer/webgl/shaders/Gradient-frag');
+var RampGlsl = require('../../renderer/webgl/shaders/Ramp-glsl');
 var Class = require('../../utils/Class');
 var Shader = require('../shader/Shader');
 
@@ -95,10 +96,10 @@ var Gradient = new Class({
             fragmentSource: GradientFrag,
             shaderAdditions: [
                 {
-                    name: 'TREE_DEPTH_0',
-                    tags: 'TREE_DEPTH',
+                    name: 'RAMP_0',
+                    tags: 'RAMP',
                     additions: {
-                        fragmentHeader: '#define BAND_TREE_DEPTH 0.0'
+                        fragmentHeader: RampGlsl
                     }
                 }
             ],
@@ -294,9 +295,12 @@ var Gradient = new Class({
     {
         var depth = gameObject.ramp.bandTreeDepth;
 
-        var bandTreeDepth = renderNode.programManager.getAdditionsByTag('TREE_DEPTH')[0];
-        bandTreeDepth.name = 'TREE_DEPTH_' + depth;
-        bandTreeDepth.additions.fragmentHeader = '#define BAND_TREE_DEPTH ' + depth + '.0';
+        var bandTreeDepth = renderNode.programManager.getAdditionsByTag('RAMP')[0];
+        bandTreeDepth.name = 'RAMP_' + depth;
+        bandTreeDepth.additions.fragmentHeader = RampGlsl.replace(
+            '#define BAND_TREE_DEPTH 0.0',
+            '#define BAND_TREE_DEPTH ' + depth + '.0'
+        );
     },
 
     /**

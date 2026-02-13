@@ -49,6 +49,7 @@ module.exports = {
     OutInverseRotation: require('./OutInverseRotation-glsl.js'),
     PointLightFrag: require('./PointLight-frag.js'),
     PointLightVert: require('./PointLight-vert.js'),
+    Ramp: require('./Ramp-glsl.js'),
     ShaderQuadFrag: require('./ShaderQuad-frag.js'),
     ShaderQuadVert: require('./ShaderQuad-vert.js'),
     SimpleTextureVert: require('./SimpleTexture-vert.js'),
