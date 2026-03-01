@@ -121,6 +121,8 @@ var Vertex = require('./NineSliceVertex');
  * @param {number} [rightWidth=10] - The size of the right vertical column (B).
  * @param {number} [topHeight=0] - The size of the top horizontal row (C). Set to zero or undefined to create a 3 slice object.
  * @param {number} [bottomHeight=0] - The size of the bottom horizontal row (D). Set to zero or undefined to create a 3 slice object.
+ * @param {boolean} [tileX=false] - When enabled, the scalable horizontal regions are repeated across the object instead of being stretched. Each tile is still slightly stretched so that it remains visible in full, which may cause minor distortion but far less than pure stretching. The texture should be seamless to avoid visible artifacts between tiles.
+ * @param {boolean} [tileY=false] - When enabled, the scalable vertical regions are repeated across the object instead of being stretched. Each tile is still slightly stretched so that it remains visible in full, which may cause minor distortion but far less than pure stretching. The texture should be seamless to avoid visible artifacts between tiles.
  */
 var NineSlice = new Class({
 
@@ -143,7 +145,7 @@ var NineSlice = new Class({
 
     initialize:
 
-    function NineSlice (scene, x, y, texture, frame, width, height, leftWidth, rightWidth, topHeight, bottomHeight)
+    function NineSlice (scene, x, y, texture, frame, width, height, leftWidth, rightWidth, topHeight, bottomHeight, tileX, tileY)
     {
         // if (width === undefined) { width = 256; }
         // if (height === undefined) { height = 256; }
@@ -276,6 +278,52 @@ var NineSlice = new Class({
          * @since 3.60.0
          */
         this.bottomHeight;
+
+        /**
+         * Indicates whether the scalable horizontal regions of the Nine Slice
+         * are repeated across the object instead of being stretched. Each tile
+         * is still slightly stretched so that it remains visible in full.
+         * Do not modify directly.
+         *
+         * @name Phaser.GameObjects.NineSlice#tileX
+         * @type {boolean}
+         * @readonly
+         * @since 4.0.0
+         */
+        this.tileX = tileX || false;
+
+        /**
+         * Indicates whether the scalable vertical regions of the Nine Slice
+         * are repeated across the object instead of being stretched. Each tile
+         * is still slightly stretched so that it remains visible in full.
+         * Do not modify directly.
+         *
+         * @name Phaser.GameObjects.NineSlice#tileY
+         * @type {boolean}
+         * @readonly
+         * @since 4.0.0
+         */
+        this.tileY = tileY || false;
+
+        /**
+         * Internal horizontal repeat count. Do not modify directly.
+         *
+         * @name Phaser.GameObjects.NineSlice#_repeatCountX
+         * @private
+         * @type {number}
+         * @since 4.0.0
+         */
+        this._repeatCountX = 1;
+
+        /**
+         * Internal vertical repeat count. Do not modify directly.
+         *
+         * @name Phaser.GameObjects.NineSlice#_repeatCountY
+         * @private
+         * @type {number}
+         * @since 4.0.0
+         */
+        this._repeatCountY = 1;
 
         /**
          * The tint value being applied to the Game Object.
@@ -477,19 +525,60 @@ var NineSlice = new Class({
         var width = this.frame.width;
         var height = this.frame.height;
 
-        this.updateQuadUVs(0, 0, 0, left / width, top / height);
-        this.updateQuadUVs(6, left / width, 0, 1 - (right / width), top / height);
-        this.updateQuadUVs(12, 1 - (right / width), 0, 1, top / height);
+        var uL = left / width;
+        var uR = 1 - right / width;
+        var vT = top / height;
+        var vB = 1 - bot / height;
 
-        if (!this.is3Slice)
+        var idx = 0;
+
+        if (this.is3Slice)
         {
-            this.updateQuadUVs(18, 0, top / height, left / width, 1 - (bot / height));
-            this.updateQuadUVs(24, left / width, top / height, 1 - right / width, 1 - (bot / height));
-            this.updateQuadUVs(30, 1 - right / width, top / height, 1, 1 - (bot / height));
-            this.updateQuadUVs(36, 0, 1 - bot / height, left / width, 1);
-            this.updateQuadUVs(42, left / width, 1 - bot / height, 1 - right / width, 1);
-            this.updateQuadUVs(48, 1 - right / width, 1 - bot / height, 1, 1);
+            this._updateUVRow(idx, uL, uR, 0, vT);
         }
+        else
+        {
+            idx = this._updateUVRow(idx, uL, uR, 0, vT);
+
+            for (var j = 0; j < this._repeatCountY; j++)
+            {
+                idx = this._updateUVRow(idx, uL, uR, vT, vB);
+            }
+
+            this._updateUVRow(idx, uL, uR, vB, 1);
+        }
+    },
+
+    /**
+     * Emits UVs for one row: left cap, `_repeatCountX` tiled middles, right cap.
+     *
+     * @method Phaser.GameObjects.NineSlice#_updateUVRow
+     * @private
+     * @since 4.0.0
+     *
+     * @param {number} idx - The starting vertex index.
+     * @param {number} uL - Middle tile U start.
+     * @param {number} uR - Middle tile U end.
+     * @param {number} vT - Row V top.
+     * @param {number} vB - Row V bottom.
+     *
+     * @return {number} The new vertex index after this row.
+     */
+    _updateUVRow: function (idx, uL, uR, vT, vB)
+    {
+        this.updateQuadUVs(idx, 0, vT, uL, vB);
+        idx += 6;
+
+        for (var i = 0; i < this._repeatCountX; i++)
+        {
+            this.updateQuadUVs(idx, uL, vT, uR, vB);
+            idx += 6;
+        }
+
+        this.updateQuadUVs(idx, uR, vT, 1, vB);
+        idx += 6;
+
+        return idx;
     },
 
     /**
@@ -516,20 +605,156 @@ var NineSlice = new Class({
 
         var width = this.width;
         var height = this.height;
+        var frame = this.frame;
 
-        this.updateQuad(0, -0.5, 0.5, -0.5 + (left / width), 0.5 - (top / height));
-        this.updateQuad(6, -0.5 + (left / width), 0.5, 0.5 - (right / width), 0.5 - (top / height));
-        this.updateQuad(12, 0.5 - (right / width), 0.5, 0.5, 0.5 - (top / height));
+        var repeatCountX = this.tileX
+            ? this._calcRepeatCount(width - left - right, frame.width - left - right)
+            : 1;
 
-        if (!this.is3Slice)
+        var repeatCountY = (this.tileY && !this.is3Slice)
+            ? this._calcRepeatCount(height - top - bot, frame.height - top - bot)
+            : 1;
+
+        var needRebuild = this._rebuildVertexArray(repeatCountX, repeatCountY);
+
+        //  Key positions in normalized coordinates (-0.5 to 0.5)
+        var xL = -0.5;
+        var xML = -0.5 + left / width;
+        var xMR = 0.5 - right / width;
+        var xR = 0.5;
+
+        var yT = 0.5;
+        var yMT = 0.5 - top / height;
+
+        var tileWidth = (xMR - xML) / repeatCountX;
+        var idx = 0;
+
+        if (this.is3Slice)
         {
-            this.updateQuad(18, -0.5, 0.5 - (top / height), -0.5 + (left / width), -0.5 + (bot / height));
-            this.updateQuad(24, -0.5 + (left / width), 0.5 - (top / height), 0.5 - (right / width), -0.5 + (bot / height));
-            this.updateQuad(30, 0.5 - (right / width), 0.5 - (top / height), 0.5, -0.5 + (bot / height));
-            this.updateQuad(36, -0.5, -0.5 + (bot / height), -0.5 + (left / width), -0.5);
-            this.updateQuad(42, -0.5 + (left / width), -0.5 + (bot / height), 0.5 - (right / width), -0.5);
-            this.updateQuad(48, 0.5 - (right / width), -0.5 + (bot / height), 0.5, -0.5);
+            this._updateVertexRow(idx, xL, xML, xMR, xR, yT, yMT, tileWidth);
         }
+        else
+        {
+            var yMB = -0.5 + bot / height;
+            var yB = -0.5;
+            var tileHeight = (yMT - yMB) / repeatCountY;
+
+            idx = this._updateVertexRow(idx, xL, xML, xMR, xR, yT, yMT, tileWidth);
+
+            for (var j = 0; j < repeatCountY; j++)
+            {
+                var rowTop = yMT - j * tileHeight;
+                var rowBot = yMT - (j + 1) * tileHeight;
+
+                idx = this._updateVertexRow(idx, xL, xML, xMR, xR, rowTop, rowBot, tileWidth);
+            }
+
+            this._updateVertexRow(idx, xL, xML, xMR, xR, yMB, yB, tileWidth);
+        }
+
+        if (needRebuild)
+        {
+            this.updateUVs();
+        }
+    },
+
+    /**
+     * Returns the number of tile repeats that fit in the given scalable
+     * region, or 1 if the original size is zero.
+     *
+     * @method Phaser.GameObjects.NineSlice#_calcRepeatCount
+     * @private
+     * @since 4.0.0
+     *
+     * @param {number} scalableSize - The current scalable region size.
+     * @param {number} originalSize - The original (texture) scalable region size.
+     *
+     * @return {number} The repeat count (at least 1).
+     */
+    _calcRepeatCount: function (scalableSize, originalSize)
+    {
+        if (originalSize > 0)
+        {
+            return Math.max(1, Math.floor(scalableSize / originalSize));
+        }
+
+        return 1;
+    },
+
+    /**
+     * Rebuilds the vertex array if the repeat counts have changed.
+     * Updates `_repeatCountX` and `_repeatCountY` and resizes `vertices`.
+     *
+     * @method Phaser.GameObjects.NineSlice#_rebuildVertexArray
+     * @private
+     * @since 4.0.0
+     *
+     * @param {number} repeatCountX - Horizontal repeat count.
+     * @param {number} repeatCountY - Vertical repeat count.
+     *
+     * @return {boolean} `true` if the vertex array was rebuilt.
+     */
+    _rebuildVertexArray: function (repeatCountX, repeatCountY)
+    {
+        if (repeatCountX === this._repeatCountX && repeatCountY === this._repeatCountY)
+        {
+            return false;
+        }
+
+        this._repeatCountX = repeatCountX;
+        this._repeatCountY = repeatCountY;
+
+        var rowCount = this.is3Slice ? 1 : (repeatCountY + 2);
+        var size = (repeatCountX + 2) * rowCount * 6;
+        var verts = this.vertices;
+
+        if (verts.length !== size)
+        {
+            verts.length = 0;
+
+            for (var k = 0; k < size; k++)
+            {
+                verts.push(new Vertex());
+            }
+        }
+
+        return true;
+    },
+
+    /**
+     * Emits vertex positions for one row: left cap quad, `_repeatCountX`
+     * tiled middle quads, right cap quad.
+     *
+     * @method Phaser.GameObjects.NineSlice#_updateVertexRow
+     * @private
+     * @since 4.0.0
+     *
+     * @param {number} idx - The starting vertex index.
+     * @param {number} xL - Left edge X.
+     * @param {number} xML - Left middle edge X.
+     * @param {number} xMR - Right middle edge X.
+     * @param {number} xR - Right edge X.
+     * @param {number} yT - Row top Y.
+     * @param {number} yB - Row bottom Y.
+     * @param {number} tileWidth - Width of each middle tile.
+     *
+     * @return {number} The new vertex index after this row.
+     */
+    _updateVertexRow: function (idx, xL, xML, xMR, xR, yT, yB, tileWidth)
+    {
+        this.updateQuad(idx, xL, yT, xML, yB);
+        idx += 6;
+
+        for (var i = 0; i < this._repeatCountX; i++)
+        {
+            this.updateQuad(idx, xML + i * tileWidth, yT, xML + (i + 1) * tileWidth, yB);
+            idx += 6;
+        }
+
+        this.updateQuad(idx, xMR, yT, xR, yB);
+        idx += 6;
+
+        return idx;
     },
 
     /**
