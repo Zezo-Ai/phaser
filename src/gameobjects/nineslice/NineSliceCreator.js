@@ -36,7 +36,10 @@ GameObjectCreator.register('nineslice', function (config, addToScene)
     var topHeight = GetValue(config, 'topHeight', 0);
     var bottomHeight = GetValue(config, 'bottomHeight', 0);
 
-    var nineslice = new NineSlice(this.scene, 0, 0, key, frame, width, height, leftWidth, rightWidth, topHeight, bottomHeight);
+    var tileX = GetValue(config, 'tileX', false);
+    var tileY = GetValue(config, 'tileY', false);
+
+    var nineslice = new NineSlice(this.scene, 0, 0, key, frame, width, height, leftWidth, rightWidth, topHeight, bottomHeight, tileX, tileY);
 
     if (addToScene !== undefined)
     {
