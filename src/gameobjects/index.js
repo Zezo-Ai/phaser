@@ -131,6 +131,7 @@ if (typeof WEBGL_RENDERER)
 {
     GameObjects.CaptureFrame = require('./captureframe/CaptureFrame');
     GameObjects.Gradient = require('./gradient/Gradient');
+    GameObjects.NoiseCell4D = require('./noise/noisecell4d/NoiseCell4D');
     GameObjects.Shader = require('./shader/Shader');
     GameObjects.NineSlice = require('./nineslice/NineSlice');
     GameObjects.PointLight = require('./pointlight/PointLight');
@@ -138,6 +139,7 @@ if (typeof WEBGL_RENDERER)
 
     GameObjects.Factories.CaptureFrame = require('./captureframe/CaptureFrameFactory');
     GameObjects.Factories.Gradient = require('./gradient/GradientFactory');
+    GameObjects.Factories.NoiseCell4D = require('./noise/noisecell4d/NoiseCell4DFactory');
     GameObjects.Factories.Shader = require('./shader/ShaderFactory');
     GameObjects.Factories.NineSlice = require('./nineslice/NineSliceFactory');
     GameObjects.Factories.PointLight = require('./pointlight/PointLightFactory');
@@ -145,6 +147,7 @@ if (typeof WEBGL_RENDERER)
 
     GameObjects.Creators.CaptureFrame = require('./captureframe/CaptureFrameCreator');
     GameObjects.Creators.Gradient = require('./gradient/GradientCreator');
+    GameObjects.Creators.NoiseCell4D = require('./noise/noisecell4d/NoiseCell4DCreator');
     GameObjects.Creators.Shader = require('./shader/ShaderCreator');
     GameObjects.Creators.NineSlice = require('./nineslice/NineSliceCreator');
     GameObjects.Creators.PointLight = require('./pointlight/PointLightCreator');

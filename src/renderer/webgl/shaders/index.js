@@ -48,6 +48,7 @@ module.exports = {
     GradientFrag: require('./Gradient-frag.js'),
     MultiFrag: require('./Multi-frag.js'),
     MultiVert: require('./Multi-vert.js'),
+    NoiseWorley4DFrag: require('./NoiseWorley4D-frag.js'),
     OutInverseRotation: require('./OutInverseRotation-glsl.js'),
     PointLightFrag: require('./PointLight-frag.js'),
     PointLightVert: require('./PointLight-vert.js'),

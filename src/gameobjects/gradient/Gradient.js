@@ -15,7 +15,7 @@ var Shader = require('../shader/Shader');
  * @classdesc
  * A Gradient Game Object.
  *
- * This Game Object is quad which displays a gradient.
+ * This Game Object is a quad which displays a gradient.
  * You can manipulate this object like any other, make it interactive,
  * and use it in filters and masks to create visually stunning effects.
  *
