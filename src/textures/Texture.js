@@ -501,7 +501,7 @@ var Texture = new Class({
      * @method Phaser.Textures.Texture#setSource
      * @since 4.0.0
      *
-     * @param {Phaser.Types.Textures.TextureSource | Phaser.Types.Textures.TextureSource[]} data - The source image data.
+     * @param {Phaser.Textures.TextureSource | Phaser.Types.Textures.TextureSource | (Phaser.Textures.TextureSource | Phaser.Types.Textures.TextureSource)[]} data - The source image data.
      * @param {number} [startIndex=0] - The index of the first source to update. If there are multiple data elements, they will be applied to subsequent indices.
      * @param {boolean} [renew=false] - Whether to destroy the existing source and create a new one, if a source is already in the array at an index.
      * @param {number} [width] - Width to use, if not available from the data (e.g. using a Uint8Array)
@@ -519,6 +519,10 @@ var Texture = new Class({
         {
             var index = i + startIndex;
             var datum = data[i];
+            if (datum instanceof TextureSource)
+            {
+                datum = datum.source;
+            }
             var source = this.source[index];
             var w = datum.naturalWidth || datum.videoWidth || datum.width || source.width || width || 0;
             var h = datum.naturalHeight || datum.videoHeight || datum.height || source.height || height || 0;
