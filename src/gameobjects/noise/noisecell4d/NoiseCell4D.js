@@ -152,14 +152,7 @@ var NoiseCell4D = new Class({
         ];
         if (config.noiseWrap)
         {
-            if (typeof config.noiseWrap === 'boolean')
-            {
-                this.wrapNoise();
-            }
-            else
-            {
-                this.noiseWrap = config.noiseWrap;
-            }
+            this.noiseWrap = config.noiseWrap;
         }
 
         /**

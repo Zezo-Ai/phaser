@@ -3,7 +3,7 @@
  * @since 4.0.0
  *
  * @property {number[]} [noiseCells=[ 32, 32 ]] - The number of cells in each dimension.
- * @property {boolean | number[]} [noiseWrap=true] - Whether to make the noise wrap smoothly at the edge of the image. `noiseCells` must be integers for this to work properly. If an array of 2 numbers, it sets the wrap to that many cells.
+ * @property {number[]} [noiseWrap] - How many cells in each dimension before the pattern repeats. `noiseCells` must be integers for this to work properly. By default, this is the same as `noiseCells`.
  * @property {number[]} [noiseOffset=[ 0, 0 ]] - The offset of the noise texture.
  * @property {number[]} [noiseVariation=[ 1, 1 ]] - The variation of the cells away from a perfect grid.
  * @property {number} [noiseIterations=1] - How many octaves of noise to render, creating a more detailed output.
