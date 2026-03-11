@@ -36,7 +36,6 @@ This is not an exhaustive list. As always, check the API documentation for the m
 
 - Canvas considered deprecated
 - Pipelines
-- Masks
 - Derived FX
 - `Mesh` and `Plane`
 - `BitmapMask`
