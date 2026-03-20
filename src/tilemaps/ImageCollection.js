@@ -79,7 +79,7 @@ var ImageCollection = new Class({
          * The margin around the images in the collection (in pixels).
          * Use `setSpacing` to change.
          *
-         * @name Phaser.Tilemaps.ImageCollection#imageMarge
+         * @name Phaser.Tilemaps.ImageCollection#imageMargin
          * @type {number}
          * @readonly
          * @since 3.0.0
@@ -149,7 +149,7 @@ var ImageCollection = new Class({
      * @since 3.0.0
      *
      * @param {number} gid - The gid of the image in the Image Collection.
-     * @param {string} image - The the key of the image in the Image Collection and in the cache.
+     * @param {string} image - The key of the image in the Image Collection and in the cache.
      * @param {number} width - The width of the image in the Image Collection.
      * @param {number} height - The height of the image in the Image Collection.
      *
