@@ -1446,7 +1446,7 @@ var InputPlugin = new Class({
     },
 
     /**
-     * Processes a 'drag down' event for the given pointer. Checks the pointer state, builds-up the drag list
+     * Processes a 'drag up' event for the given pointer. Checks the pointer state, builds-up the drag list
      * and prepares them all for interaction.
      *
      * @method Phaser.Input.InputPlugin#processDragUpEvent
