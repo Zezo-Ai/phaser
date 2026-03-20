@@ -201,7 +201,7 @@ var SubmitterTilemapGPULayer = new Class({
     /**
      * Fill out the configuration object with default values where needed.
      *
-     * @method Phaser.Renderer.WebGL.RenderNodes.SubmitterTilemapGPULayer#_completeConfig
+     * @method Phaser.Renderer.WebGL.RenderNodes.SubmitterTilemapGPULayer#_completeLayout
      * @since 4.0.0
      * @param {object} config - The configuration object to complete.
      */
