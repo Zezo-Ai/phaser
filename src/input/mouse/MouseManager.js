@@ -77,7 +77,7 @@ var MouseManager = new Class({
          *
          * @name Phaser.Input.Mouse.MouseManager#preventDefaultWheel
          * @type {boolean}
-         * @default true
+         * @default false
          * @since 3.50.0
          */
         this.preventDefaultWheel = false;
@@ -230,7 +230,7 @@ var MouseManager = new Class({
     },
 
     /**
-     * The Touch Manager boot process.
+     * The Mouse Manager boot process.
      *
      * @method Phaser.Input.Mouse.MouseManager#boot
      * @private
