@@ -38,7 +38,7 @@ var TransposeMatrix = require('./TransposeMatrix');
  * @param {T[][]} [matrix] - The array to rotate.
  * @param {(number|string)} [direction=90] - The amount to rotate the matrix by.
  *
- * @return {T[][]} The rotated matrix array. The source matrix should be discard for the returned matrix.
+ * @return {T[][]} The rotated matrix array. The source matrix should be discarded for the returned matrix.
  */
 var RotateMatrix = function (matrix, direction)
 {
