@@ -98,7 +98,7 @@ var Blend = new Class({
      *
      * @method Phaser.Filters.Blend#setTexture
      * @since 4.0.0
-     * @param {string} [texture='__WHITE'] - The unique string-based key of the texture to use for displacement, which must exist in the Texture Manager.
+     * @param {string} [texture='__WHITE'] - The unique string-based key of the texture to use for the blend, which must exist in the Texture Manager.
      * @returns {this} This Filter Controller.
      */
     setTexture: function (texture)
