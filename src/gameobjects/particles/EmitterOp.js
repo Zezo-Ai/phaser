@@ -97,7 +97,7 @@ var EmitterOp = new Class({
         this.counter = 0;
 
         /**
-         * When the step counter reaches it's maximum, should it then
+         * When the step counter reaches its maximum, should it then
          * yoyo back to the start again, or flip over to it?
          *
          * @name Phaser.GameObjects.Particles.EmitterOp#yoyo
