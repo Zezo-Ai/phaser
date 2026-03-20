@@ -17,7 +17,7 @@ var managerMatrix = new TransformMatrix();
  * The object will not render if any of its renderFlags are set or it is being actively filtered out by the Camera.
  * This method should not be called directly. It is a utility function of the Render module.
  *
- * @method Phaser.GameObjects.Particles.Emitter#renderCanvas
+ * @method Phaser.GameObjects.Particles.ParticleEmitter#renderCanvas
  * @since 3.60.0
  * @private
  *
