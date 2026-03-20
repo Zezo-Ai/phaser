@@ -56,7 +56,7 @@ var InputEvents = require('../events');
  * @constructor
  * @since 3.10.0
  *
- * @param {Phaser.Input.InputPlugin} sceneInputPlugin - A reference to the Scene Input Plugin that the KeyboardPlugin belongs to.
+ * @param {Phaser.Input.InputPlugin} sceneInputPlugin - A reference to the Scene Input Plugin that the GamepadPlugin belongs to.
  */
 var GamepadPlugin = new Class({
 
@@ -639,7 +639,7 @@ var GamepadPlugin = new Class({
 
 /**
  * An instance of the Gamepad Plugin class, if enabled via the `input.gamepad` Scene or Game Config property.
- * Use this to create access Gamepads connected to the browser and respond to gamepad buttons.
+ * Use this to access Gamepads connected to the browser and respond to gamepad buttons.
  *
  * @name Phaser.Input.InputPlugin#gamepad
  * @type {?Phaser.Input.Gamepad.GamepadPlugin}
