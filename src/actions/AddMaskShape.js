@@ -49,7 +49,7 @@ var FitToRegion = require('./FitToRegion');
  * @param {Phaser.GameObjects.GameObject | Phaser.Cameras.Scene2D.Camera} target - The GameObject or Camera to which to apply a mask.
  * @param {Phaser.Types.Actions.AddMaskShapeConfig} config - The configuration of the mask shape.
  *
- * @returns {Phaser.Filters.Mask} The new Mask filter.
+ * @return {Phaser.Filters.Mask} The new Mask filter.
  */
 var AddMaskShape = function (target, config)
 {
