@@ -612,7 +612,7 @@ var CanvasRenderer = new Class({
      * @param {string} [type='image/png'] - The format of the image to create, usually `image/png` or `image/jpeg`.
      * @param {number} [encoderOptions=0.92] - The image quality, between 0 and 1. Used for image formats with lossy compression, such as `image/jpeg`.
      *
-     * @return {this} This WebGL Renderer.
+     * @return {this} This Canvas Renderer.
      */
     snapshot: function (callback, type, encoderOptions)
     {
@@ -641,7 +641,7 @@ var CanvasRenderer = new Class({
      * @param {string} [type='image/png'] - The format of the image to create, usually `image/png` or `image/jpeg`.
      * @param {number} [encoderOptions=0.92] - The image quality, between 0 and 1. Used for image formats with lossy compression, such as `image/jpeg`.
      *
-     * @return {this} This WebGL Renderer.
+     * @return {this} This Canvas Renderer.
      */
     snapshotArea: function (x, y, width, height, callback, type, encoderOptions)
     {
@@ -678,7 +678,7 @@ var CanvasRenderer = new Class({
      * @param {number} y - The y coordinate of the pixel to get.
      * @param {Phaser.Types.Renderer.Snapshot.SnapshotCallback} callback - The Function to invoke after the snapshot pixel data is extracted.
      *
-     * @return {this} This WebGL Renderer.
+     * @return {this} This Canvas Renderer.
      */
     snapshotPixel: function (x, y, callback)
     {
