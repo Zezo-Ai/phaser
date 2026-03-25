@@ -43,7 +43,7 @@ var Enable = {
      *
      * @param {boolean} [reset] - Also reset the Body and place the Game Object at (x, y).
      * @param {number} [x] - The horizontal position to place the Game Object, if `reset` is true.
-     * @param {number} [y] - The horizontal position to place the Game Object, if `reset` is true.
+     * @param {number} [y] - The vertical position to place the Game Object, if `reset` is true.
      * @param {boolean} [enableGameObject] - Also set this Game Object's `active` to true.
      * @param {boolean} [showGameObject] - Also set this Game Object's `visible` to true.
      *
