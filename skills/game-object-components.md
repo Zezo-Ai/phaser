@@ -411,23 +411,24 @@ Internal filters apply in object-local space (rotate with the object). External 
 
 | Component | Sprite | Image | Text | Container | TileSprite | Video | Graphics |
 |---|---|---|---|---|---|---|---|
-| Alpha | yes | yes | yes | -- | yes | yes | yes |
-| AlphaSingle | -- | -- | -- | yes | -- | -- | -- |
+| Alpha | yes | yes | yes | -- | yes | yes | -- |
+| AlphaSingle | -- | -- | -- | yes | -- | -- | yes |
 | BlendMode | yes | yes | yes | yes | yes | yes | yes |
 | Depth | yes | yes | yes | yes | yes | yes | yes |
 | Flip | yes | yes | yes | -- | yes | yes | -- |
 | GetBounds | yes | yes | yes | -- | yes | yes | -- |
-| Lighting | yes | yes | yes | -- | yes | -- | -- |
+| Lighting | yes | yes | yes | -- | yes | yes | -- |
 | Mask | yes | yes | yes | yes | yes | yes | yes |
 | Origin | yes | yes | yes | -- | yes | yes | -- |
 | ScrollFactor | yes | yes | yes | -- | yes | yes | yes |
-| Size | yes | yes | -- | -- | yes | yes | -- |
+| Size | yes | yes | -- | -- | -- | -- | -- |
+| ComputedSize | -- | -- | -- | -- | yes | yes | -- |
 | TextureCrop | yes | yes | -- | -- | -- | -- | -- |
 | Texture | -- | -- | -- | -- | yes | yes | -- |
 | Tint | yes | yes | yes | -- | yes | yes | -- |
 | Transform | yes | yes | yes | yes | yes | yes | yes |
 | Visible | yes | yes | yes | yes | yes | yes | yes |
-| RenderNodes | yes | yes | yes | -- | yes | -- | yes |
+| RenderNodes | yes | yes | yes | -- | yes | yes | yes |
 | PathFollower | -- | -- | -- | -- | -- | -- | -- |
 
 PathFollower is only on `Phaser.GameObjects.PathFollower` (extends Sprite).
