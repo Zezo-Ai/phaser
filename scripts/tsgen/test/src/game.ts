@@ -7,17 +7,14 @@ class MyScene extends Phaser.Scene {
 
     public create ()
     {
+        let c = this.add.container();
+
+        c.setSize(300, 200);
+
         let sprite = this.add.sprite(400, 300, 'cards', 'clubs3');
 
         sprite.setInteractive();
-
-        this.input.on('pointerdown', function () {
-
-            sprite.setFrame('hearts4');
-
-        });
     }
-
 }
 
 let config = {
