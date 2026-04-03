@@ -15,6 +15,6 @@ node_modules/
 /npm-debug.log
 build/
 out/
-docs/phaser.json
+types/phaser.json
 scripts/tsgen/test/bin/
 scripts/tsgen/test/output.txt
