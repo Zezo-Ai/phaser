@@ -1,5 +1,5 @@
 /**
- * @typedef {object} Phaser.Types.GameObjects.NoiseCell4D.NoiseCell4DQuadConfig
+ * @typedef {object} Phaser.Types.GameObjects.Noise.NoiseQuadConfig
  * @since 4.0.0
  *
  * @property {number[]} [noiseOffset=[ 0, 0 ]] - The offset of the noise texture.

@@ -223,7 +223,7 @@ var Gradient = new Class({
          * This points from the start in the direction that the gradient flows.
          * Gradient color starts from the `start` vector and ends at the tip of this.
          *
-         * @name Phaser.GameObjects.Gradient#start
+         * @name Phaser.GameObjects.Gradient#shape
          * @type {Phaser.Types.Math.Vector2Like}
          * @since 4.0.0
          */
@@ -306,7 +306,7 @@ var Gradient = new Class({
     /**
      * Internal destroy handler, called as part of the destroy process.
      *
-     * @method Phaser.GameObjects.Shader#preDestroy
+     * @method Phaser.GameObjects.Gradient#preDestroy
      * @protected
      * @since 4.0.0
      */
