@@ -71,9 +71,9 @@ if (typeof WEBGL_RENDERER)
         filterCamera: null,
 
         /**
-         * Get the filters lists.
+         * The filter lists for this Game Object.
          * This is an object with `internal` and `external` properties.
-         * Each list is a {@see Phaser.GameObjects.Components.FilterList} object.
+         * Each list is a {@link Phaser.GameObjects.Components.FilterList} object.
          *
          * This is only available if you use the `enableFilters` method.
          *
@@ -649,7 +649,7 @@ if (typeof WEBGL_RENDERER)
         },
 
         /**
-         * Set whether filters should be updated every frame.
+         * Sets whether the filter camera should automatically re-focus on the Game Object every frame.
          * Sets the `filtersAutoFocus` property.
          *
          * @method Phaser.GameObjects.Components.Filters#setFiltersAutoFocus

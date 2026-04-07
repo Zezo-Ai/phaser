@@ -50,7 +50,7 @@
  * @function Phaser.Geom.Polygon.Earcut
  * @since 3.50.0
  *
- * @param {number[]} data - A flat array of vertex coordinate, like [x0,y0, x1,y1, x2,y2, ...]
+ * @param {number[]} data - A flat array of vertex coordinates, like [x0,y0, x1,y1, x2,y2, ...]
  * @param {number[]} [holeIndices] - An array of hole indices if any (e.g. [5, 8] for a 12-vertex input would mean one hole with vertices 5–7 and another with 8–11).
  * @param {number} [dimensions=2] - The number of coordinates per vertex in the input array (2 by default).
  *

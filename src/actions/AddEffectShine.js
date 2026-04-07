@@ -63,7 +63,7 @@ var UUID = require('../utils/string/UUID');
  * You can create your own Shine effects using this as a base or as inspiration.
  *
  * @example
- * // Slowly move a blueish highlight up and down an image.
+ * // Slowly move a cyan highlight up and down an image.
  * // Use a displacement map to dirty up the highlight.
  * const { dynamicTexture, gradient, tween } = Phaser.Actions.AddEffectShine(this.image, {
  *     duration: 5000,

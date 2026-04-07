@@ -633,7 +633,7 @@ var Transform = {
     },
 
     /**
-     * Gets the sum total rotation of all of this Game Objects parent Containers.
+     * Gets the sum total rotation of all of this Game Object's parent Containers.
      *
      * The returned value is in radians and will be zero if this Game Object has no parent container.
      *

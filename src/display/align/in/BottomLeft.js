@@ -10,7 +10,7 @@ var SetBottom = require('../../bounds/SetBottom');
 var SetLeft = require('../../bounds/SetLeft');
 
 /**
- * Takes given Game Object and aligns it so that it is positioned in the bottom left of the other.
+ * Takes a given Game Object and aligns it so that it is positioned in the bottom-left of the other.
  *
  * @function Phaser.Display.Align.In.BottomLeft
  * @since 3.0.0

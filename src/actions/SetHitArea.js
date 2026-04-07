@@ -5,7 +5,7 @@
  */
 
 /**
- * Passes all provided Game Objects to the Input Manager to enable them for input with identical areas and callbacks.
+ * Iterates over all items in the given array and calls `setInteractive` on each one, applying the same hit area shape and callback to every Game Object in the array.
  *
  * @see {@link Phaser.GameObjects.GameObject#setInteractive}
  *

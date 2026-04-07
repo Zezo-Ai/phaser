@@ -184,7 +184,7 @@ var LoaderPlugin = new Class({
         this.maxParallelDownloads = GetFastValue(sceneConfig, 'maxParallelDownloads', gameConfig.loaderMaxParallelDownloads);
 
         /**
-         * xhr specific global settings (can be overridden on a per-file basis)
+         * XHR-specific global settings (can be overridden on a per-file basis)
          *
          * @name Phaser.Loader.LoaderPlugin#xhr
          * @type {Phaser.Types.Loader.XHRSettingsObject}
@@ -517,7 +517,7 @@ var LoaderPlugin = new Class({
      *
      * The file must be an instance of `Phaser.Loader.File`, or a class that extends it. The Loader will check that the key
      * used by the file won't conflict with any other key either in the loader, the inflight queue or the target cache.
-     * If allowed it will then add the file into the pending list, read for the load to start. Or, if the load has already
+     * If allowed it will then add the file into the pending list, ready for the load to start. Or, if the load has already
      * started, ready for the next batch of files to be pulled from the list to the inflight queue.
      *
      * You should not normally call this method directly, but rather use one of the Loader methods like `image` or `atlas`,
@@ -962,7 +962,9 @@ var LoaderPlugin = new Class({
     },
 
     /**
-     * Called automatically during the load process.
+     * Called automatically once per game step while the Loader is in the LOADING state.
+     * Checks whether there is capacity in the inflight queue and, if so, calls `checkLoadQueue`
+     * to move more files from the pending list into active loading.
      *
      * @method Phaser.Loader.LoaderPlugin#update
      * @since 3.10.0
@@ -981,7 +983,7 @@ var LoaderPlugin = new Class({
      * It will check to see if there are any more files in the pending list that need loading, and if so it will move
      * them from the list Set into the inflight Set, set their CORs flag and start them loading.
      *
-     * It will carrying on doing this for each file in the pending list until it runs out, or hits the max allowed parallel downloads.
+     * It will carry on doing this for each file in the pending list until it runs out, or hits the max allowed parallel downloads.
      *
      * @method Phaser.Loader.LoaderPlugin#checkLoadQueue
      * @private
@@ -1171,9 +1173,9 @@ var LoaderPlugin = new Class({
     },
 
     /**
-     * Converts the given JSON data into a file that the browser then prompts you to download so you can save it locally.
+     * Converts the given JavaScript object into JSON and triggers a browser download so you can save it locally.
      *
-     * The data must be well formed JSON and ready-parsed, not a JavaScript object.
+     * The data must be a plain JavaScript object that can be serialized via `JSON.stringify`. Do not pass a pre-stringified JSON string.
      *
      * @method Phaser.Loader.LoaderPlugin#saveJSON
      * @since 3.0.0

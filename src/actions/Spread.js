@@ -25,7 +25,7 @@
  * @param {string} property - The property of the Game Object to spread.
  * @param {number} min - The minimum value.
  * @param {number} max - The maximum value.
- * @param {boolean} [inc=false] - Should the values be incremented? `true` or set (`false`)
+ * @param {boolean} [inc=false] - Should the values be incremented (`true`) or set directly (`false`)?
  *
  * @return {(array|Phaser.GameObjects.GameObject[])} The array of Game Objects that were passed to this Action.
  */

@@ -9,8 +9,10 @@ var Vector2 = require('../math/Vector2');
 
 /**
  * @classdesc
- * A Tileset is a combination of a single image containing the tiles and a container for data about
- * each tile.
+ * A Tileset is a combination of a single image containing the tiles and a container for data
+ * about each tile. It maps tile indexes (GIDs) to positions within the tileset image, stores
+ * per-tile properties and collision data, and supports tile spacing and margin. Tilesets are
+ * created automatically when parsing Tiled map data and are used by TilemapLayer during rendering.
  *
  * @class Tileset
  * @memberof Phaser.Tilemaps
@@ -90,7 +92,7 @@ var Tileset = new Class({
         this.tileMargin = tileMargin;
 
         /**
-         * The spacing between each the tile in the sheet (in pixels). Use `setSpacing` to change.
+         * The spacing between each tile in the sheet (in pixels). Use `setSpacing` to change.
          *
          * @name Phaser.Tilemaps.Tileset#tileSpacing
          * @type {number}
@@ -254,7 +256,7 @@ var Tileset = new Class({
     },
 
     /**
-     * Get a tiles properties that are stored in the Tileset. Returns null if tile index is not
+     * Get a tile's properties that are stored in the Tileset. Returns null if tile index is not
      * contained in this Tileset. This is typically defined in Tiled under the Tileset editor.
      *
      * @method Phaser.Tilemaps.Tileset#getTileProperties

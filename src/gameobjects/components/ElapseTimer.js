@@ -110,7 +110,7 @@ var ElapseTimer = {
      *
      * @method Phaser.GameObjects.Components.ElapseTimer#resetTimer
      * @since 4.0.0
-     * @param {number} [ms=0] - The time to reset the timer to.
+     * @param {number} [ms=0] - The time to reset the timer to, in milliseconds.
      * @return {this} This game object.
      */
     resetTimer: function (ms)

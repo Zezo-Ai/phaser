@@ -8,7 +8,7 @@ var Rectangle = require('./Rectangle');
 var MATH_CONST = require('../../math/const');
 
 /**
- * Constructs new Rectangle or repositions and resizes an existing Rectangle so that all of the given points are on or within its bounds.
+ * Constructs a new Rectangle or repositions and resizes an existing Rectangle so that all of the given points are on or within its bounds.
  *
  * The `points` parameter is an array of Point-like objects:
  *

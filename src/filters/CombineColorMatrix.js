@@ -12,12 +12,17 @@ var ColorMatrix = require('../display/ColorMatrix');
  * @classdesc
  * The CombineColorMatrix Filter controller.
  *
- * This filter combines channels from two textures.
- * There are many possibilities with this.
- * However, a significant purpose is to manipulate alpha channels.
- * Use `setupAlphaTransfer` to configure common options,
- * or set the `colorMatrixSelf` and `colorMatrixTransfer` properties
- * directly.
+ * This filter combines color channels from two textures: a base input and a
+ * secondary transfer texture. Each source is transformed independently by its
+ * own `ColorMatrix` (`colorMatrixSelf` and `colorMatrixTransfer`), and the
+ * results are then blended per-channel using configurable addition weights
+ * (`additions`) and multiplication weights (`multiplications`). This makes it
+ * suitable for a wide range of compositing effects, though its primary use is
+ * alpha channel manipulation — for example, using a greyscale transfer texture
+ * as a soft mask or applying a brightness-derived alpha to the base image.
+ * Use `setupAlphaTransfer` to configure the matrices and weights for common
+ * alpha-transfer patterns, or set the `colorMatrixSelf`, `colorMatrixTransfer`,
+ * `additions`, and `multiplications` properties directly for custom effects.
  *
  * A CombineColorMatrix filter is added to a Camera via the FilterList component:
  *
@@ -125,8 +130,12 @@ var CombineColorMatrix = new Class({
     },
 
     /**
-     * Configure alpha transfer operations, a common use for CombineColorMatrix.
-     * RGB values are summed; alpha values are multiplied.
+     * Resets both color matrices and the `additions` and `multiplications`
+     * weighting arrays, then applies a preset configuration for alpha transfer
+     * — a common use case for this filter. In the preset, RGB channels are
+     * combined by addition and the alpha channel is combined by multiplication.
+     * The boolean parameters control which color and brightness-to-alpha
+     * transformations are applied to each source before blending.
      *
      * @example
      * // Use just the base image, with unified alpha, like Mask.
@@ -166,6 +175,12 @@ var CombineColorMatrix = new Class({
         else if (brightnessToAlphaTransfer) { t.brightnessToAlpha(true); }
     },
 
+    /**
+     * Destroys this filter, releasing all references and resources.
+     *
+     * @method Phaser.Filters.CombineColorMatrix#destroy
+     * @since 4.0.0
+     */
     destroy: function ()
     {
         this.colorMatrixSelf = null;

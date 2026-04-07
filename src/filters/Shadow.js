@@ -74,7 +74,8 @@ var Shadow = new Class({
         this.y = y;
 
         /**
-         * The amount of decay for the shadow effect.
+         * Controls how quickly the shadow fades over distance. Lower values produce longer,
+         * more gradual shadows; higher values produce shorter, more concentrated shadows.
          *
          * @name Phaser.Filters.Shadow#decay
          * @type {number}
@@ -83,7 +84,8 @@ var Shadow = new Class({
         this.decay = decay;
 
         /**
-         * The power of the shadow effect.
+         * An exponent applied to the shadow falloff curve. Higher values create sharper
+         * shadow edges; lower values create softer, more diffuse shadows.
          *
          * @name Phaser.Filters.Shadow#power
          * @type {number}
@@ -92,7 +94,9 @@ var Shadow = new Class({
         this.power = power;
 
         /**
-         * The internal gl color array.
+         * The internal WebGL color array used by the shader. Stores the shadow color
+         * as normalized RGBA float values in the range 0 to 1. This array is updated
+         * automatically when the `color` property is set.
          *
          * @name Phaser.Filters.Shadow#glcolor
          * @type {number[]}
@@ -112,7 +116,8 @@ var Shadow = new Class({
         this.samples = samples;
 
         /**
-         * The intensity of the shadow effect.
+         * A multiplier for the overall shadow visibility. Higher values produce darker,
+         * more prominent shadows.
          *
          * @name Phaser.Filters.Shadow#intensity
          * @type {number}
@@ -127,7 +132,9 @@ var Shadow = new Class({
     },
 
     /**
-     * The color of the shadow.
+     * The color of the shadow, expressed as a hex RGB value (e.g. `0xff0000` for red,
+     * `0x000000` for black). Setting this property updates the internal `glcolor` array
+     * used by the WebGL shader.
      *
      * @name Phaser.Filters.Shadow#color
      * @type {number}
@@ -153,6 +160,16 @@ var Shadow = new Class({
 
     },
 
+    /**
+     * Returns the amount of extra padding, in pixels, that this filter requires when rendering.
+     * The padding accounts for the shadow effect extending beyond the original bounds
+     * of the filtered Game Object.
+     *
+     * @method Phaser.Filters.Shadow#getPadding
+     * @since 4.0.0
+     *
+     * @return {Phaser.Geom.Rectangle} The padding Rectangle.
+     */
     getPadding: function ()
     {
         var override = this.paddingOverride;

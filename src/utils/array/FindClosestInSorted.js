@@ -15,7 +15,7 @@
  *
  * @param {number} value - The value to search for in the array.
  * @param {array} array - The array to search, which must be sorted.
- * @param {string} [key] - An optional property key. If specified the array elements property will be checked against value.
+ * @param {string} [key] - An optional property key. If specified the array element's property will be checked against value.
  *
  * @return {(number|any)} The nearest value found in the array, or if a `key` was given, the nearest object with the matching property value.
  */

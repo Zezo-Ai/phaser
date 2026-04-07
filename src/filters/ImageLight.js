@@ -36,7 +36,7 @@ var TransformMatrix = require('../gameobjects/components/TransformMatrix');
  * Use the NormalTools filter to manipulate the normal map if necessary,
  * using a DynamicTexture to capture the output.
  *
- * A ImageLight effect is added to a Camera via the FilterList component:
+ * An ImageLight effect is added to a Camera via the FilterList component:
  *
  * ```js
  * const camera = this.cameras.main;

@@ -60,7 +60,9 @@ var GradientMap = new Class({
         }
 
         /**
-         * The ramp which colors the gradient effect.
+         * The ColorRamp used to recolor the image. Each pixel's brightness
+         * (or custom progress value derived from `colorFactor` and `color`)
+         * is looked up along this ramp to determine its output color.
          *
          * @name Phaser.Filters.GradientMap#ramp
          * @type {Phaser.Display.ColorRamp}
@@ -81,15 +83,16 @@ var GradientMap = new Class({
         this.dither = !!config.dither;
 
         /**
-         * Values which add directly to ramp progress.
-         * They are applied after colorFactor.
-         * You might set these to 1 if you have negative colorFactor values,
-         * allowing you to invert progress contribution.
+         * RGBA offset values added directly to the ramp progress after `colorFactor`
+         * has been applied. Each element corresponds to a channel: red, green, blue,
+         * and alpha. For example, setting a channel to `1` when its corresponding
+         * `colorFactor` entry is `-1` effectively inverts that channel's contribution
+         * to the progress value.
          *
          * @name Phaser.Filters.GradientMap#color
          * @type {number[]}
          * @since 4.0.0
-         * @default [ 0.3, 0.6, 0.1, 0 ]
+         * @default [ 0, 0, 0, 0 ]
          */
         this.color = [ 0, 0, 0, 0 ];
         if (config.color)
@@ -101,8 +104,12 @@ var GradientMap = new Class({
         }
 
         /**
-         * Factor which multiplies the image to contribute to ramp progress.
-         * Try to keep the sum of factors equal to 1.
+         * RGBA multipliers applied to each channel of the source image to compute
+         * the ramp progress value. The results are summed together. The defaults
+         * `[ 0.3, 0.6, 0.1, 0 ]` approximate standard luminance weights, producing
+         * a perceptually accurate grayscale progress. Keep the sum of factors equal
+         * to 1 for a normalized result, or use negative values (paired with `color`
+         * offsets) to invert a channel's contribution.
          *
          * @name Phaser.Filters.GradientMap#colorFactor
          * @type {number[]}
@@ -131,7 +138,9 @@ var GradientMap = new Class({
         this.unpremultiply = config.unpremultiply === undefined ? true : config.unpremultiply;
 
         /**
-         * How much of the effect to blend over the original.
+         * The blend strength of the gradient map effect over the original image,
+         * in the range 0 (no effect, original image fully visible) to 1 (full
+         * gradient map effect, original image fully replaced).
          *
          * @name Phaser.Filters.GradientMap#alpha
          * @type {number}

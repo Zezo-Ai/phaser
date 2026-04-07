@@ -175,7 +175,7 @@ var SpriteSheetFile = new Class({
  * });
  * ```
  *
- * The normal map file is subject to the same conditions as the image file with regard to the path, baseURL, CORs and XHR Settings.
+ * The normal map file is subject to the same conditions as the image file with regard to the path, baseURL, CORS and XHR Settings.
  * Normal maps are a WebGL only feature.
  *
  * Note: The ability to load this type of file will only be available if the Sprite Sheet File type has been built into Phaser.

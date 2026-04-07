@@ -36,7 +36,7 @@ var Controller = require('./Controller');
  * ```js
  * const camera = this.cameras.main;
  * camera.filters.internal.addBlocky({ size: 4 });
- * camera.filters.external.addBlocky({ size: { x: 2, y: 4 } }, offset: { x: 1, y: 2 });
+ * camera.filters.external.addBlocky({ size: { x: 2, y: 4 }, offset: { x: 1, y: 2 } });
  * ```
  *
  * @class Blocky

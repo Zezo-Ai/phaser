@@ -44,7 +44,9 @@ var Barrel = new Class({
         /**
          * The amount of distortion applied to the barrel effect.
          *
-         * Typically keep this within the range 1 (no distortion) to +- 1.
+         * A value of 1 applies no distortion. Values above 1 expand the view outward
+         * (barrel distortion), while values below 1 pinch the view inward (pincushion
+         * distortion). Typically keep this within ±1 of the default value of 1.
          *
          * @name Phaser.Filters.Barrel#amount
          * @type {number}

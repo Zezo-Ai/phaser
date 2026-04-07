@@ -328,7 +328,7 @@ var MouseManager = new Class({
 
     /**
      * If the browser supports pointer lock, this will request that the pointer lock is released. If
-     * the browser successfully enters a locked state, a 'POINTER_LOCK_CHANGE_EVENT' will be
+     * the browser successfully exits the locked state, a 'POINTER_LOCK_CHANGE_EVENT' will be
      * dispatched - from the game's input manager - with an `isPointerLocked` property.
      *
      * @method Phaser.Input.Mouse.MouseManager#releasePointerLock

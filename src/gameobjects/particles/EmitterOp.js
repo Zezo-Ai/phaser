@@ -596,7 +596,7 @@ var EmitterOp = new Class({
     },
 
     /**
-     * The returned value sets what the property will be at the START of the particles life, on emit.
+     * The returned value sets what the property will be at the START of the particle's life, on emit.
      *
      * @method Phaser.GameObjects.Particles.EmitterOp#defaultEmit
      * @since 3.0.0
@@ -609,7 +609,7 @@ var EmitterOp = new Class({
     },
 
     /**
-     * The returned value updates the property for the duration of the particles life.
+     * The returned value updates the property for the duration of the particle's life.
      *
      * @method Phaser.GameObjects.Particles.EmitterOp#defaultUpdate
      * @since 3.0.0
@@ -627,7 +627,7 @@ var EmitterOp = new Class({
     },
 
     /**
-     * The returned value sets what the property will be at the START of the particles life, on emit.
+     * The returned value sets what the property will be at the START of the particle's life, on emit.
      *
      * This method is only used when you have provided a custom emit callback.
      *
@@ -650,7 +650,7 @@ var EmitterOp = new Class({
     },
 
     /**
-     * The returned value updates the property for the duration of the particles life.
+     * The returned value updates the property for the duration of the particle's life.
      *
      * This method is only used when you have provided a custom update callback.
      *
@@ -744,7 +744,7 @@ var EmitterOp = new Class({
     },
 
     /**
-     * An `onEmit` callback that returns a value between the {@link Phaser.GameObjects.Particles.EmitterOp#start} and
+     * An `onEmit` callback that returns a random integer value between the {@link Phaser.GameObjects.Particles.EmitterOp#start} and
      * {@link Phaser.GameObjects.Particles.EmitterOp#end} range.
      *
      * @method Phaser.GameObjects.Particles.EmitterOp#randomRangedIntEmit

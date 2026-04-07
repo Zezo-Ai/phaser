@@ -19,10 +19,10 @@ var Shader = require('../shader/Shader');
  * You can manipulate this object like any other, make it interactive,
  * and use it in filters and masks to create visually stunning effects.
  *
- * Behind the scenes, a Gradient is a {@see Phaser.GameObjects.Shader} using a specific shader program.
+ * Behind the scenes, a Gradient is a {@link Phaser.GameObjects.Shader} using a specific shader program.
  *
- * The gradient color is determined by a {@see Phaser.Display.ColorRamp},
- * containing one or more {@see Phaser.Display.ColorBand} objects.
+ * The gradient color is determined by a {@link Phaser.Display.ColorRamp},
+ * containing one or more {@link Phaser.Display.ColorBand} objects.
  * The ramp is laid out along the `shape` of the gradient,
  * originating from the `start` location.
  * The `shapeMode` describes how the gradient fills elsewhere,
@@ -182,7 +182,7 @@ var Gradient = new Class({
          * This can be one of the following:
          *
          * - 0 (LINEAR): a ribbon where the shape points from one side to the other.
-         *   Commonly use for skies etc.
+         *   Commonly used for skies etc.
          * - 1 (BILINEAR): like LINEAR, but reflected in both directions.
          *   Useful for gentle waves, reflections etc.
          * - 2 (RADIAL): gradient spreads out from the `start`,
@@ -223,7 +223,7 @@ var Gradient = new Class({
          * This points from the start in the direction that the gradient flows.
          * Gradient color starts from the `start` vector and ends at the tip of this.
          *
-         * @name Phaser.GameObjects.Gradient#start
+         * @name Phaser.GameObjects.Gradient#shape
          * @type {Phaser.Types.Math.Vector2Like}
          * @since 4.0.0
          */
@@ -306,7 +306,7 @@ var Gradient = new Class({
     /**
      * Internal destroy handler, called as part of the destroy process.
      *
-     * @method Phaser.GameObjects.Shader#preDestroy
+     * @method Phaser.GameObjects.Gradient#preDestroy
      * @protected
      * @since 4.0.0
      */

@@ -6,7 +6,7 @@
 
 /**
  * Returns the amount the Game Object is visually offset from its y coordinate.
- * This is the same as `width * origin.y`.
+ * This is the same as `height * origin.y`.
  * This value will only be > 0 if `origin.y` is not equal to zero.
  *
  * @function Phaser.Display.Bounds.GetOffsetY

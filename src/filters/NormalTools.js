@@ -30,7 +30,7 @@ var Vector3 = require('../math/Vector3');
  *
  * You can even use the output as a normal map for regular lighting.
  * Ordinarily, normal maps are loaded alongside the main texture,
- * but you can edit this.
+ * but you can override this.
  *
  * ```js
  * // Given a dynamic texture `dyn` where the filter output is drawn,

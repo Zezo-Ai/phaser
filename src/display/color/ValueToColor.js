@@ -11,15 +11,16 @@ var RGBStringToColor = require('./RGBStringToColor');
 
 /**
  * Converts the given source color value into an instance of a Color class.
- * The value can be either a string, prefixed with `rgb` or a hex string, a number or an Object.
+ * The value can be a string (either prefixed with `rgb` for an RGB color string, or a hex color string),
+ * a number representing a packed RGB integer, or a plain object with `r`, `g`, and `b` properties.
  *
  * @function Phaser.Display.Color.ValueToColor
  * @since 3.0.0
  *
  * @param {(string|number|Phaser.Types.Display.InputColorObject)} input - The source color value to convert.
- * @param {Phaser.Display.Color} [color] - The color where the new color will be stored. If not defined, a new color object is returned.
+ * @param {Phaser.Display.Color} [color] - An existing Color object to store the result in. If not provided, a new Color object is created and returned.
  *
- * @return {Phaser.Display.Color} A Color object.
+ * @return {Phaser.Display.Color} A Color object containing the converted color value.
  */
 var ValueToColor = function (input, color)
 {

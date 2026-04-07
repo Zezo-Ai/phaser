@@ -24,9 +24,9 @@ var Shape = require('../Shape');
  * it will look more like an egg shape.
  *
  * The Ellipse shape also has a `smoothness` property and corresponding `setSmoothness` method.
- * This allows you to control how smooth the shape renders in WebGL, by controlling the number of iterations
- * that take place during construction. Increase and decrease the default value for smoother, or more
- * jagged, shapes.
+ * This allows you to control how smooth the shape renders in WebGL, by controlling the number of points
+ * used to approximate the curve. Increase the default value for smoother shapes, or decrease it for
+ * more jagged, lower-polygon results.
  *
  * @class Ellipse
  * @extends Phaser.GameObjects.Shape
@@ -136,7 +136,7 @@ var Ellipse = new Class({
     },
 
     /**
-     * Sets the smoothness of the ellipse. The number of points used when rendering it.
+     * Sets the smoothness of the ellipse, controlling the number of points used when rendering it.
      * Increase this value for a smoother ellipse, at the cost of more polygons being rendered.
      * This call can be chained.
      *

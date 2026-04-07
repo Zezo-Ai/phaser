@@ -14,7 +14,7 @@
  * @param {array} array - The input array.
  * @param {*} item - The element to move down the array.
  *
- * @return {array} The input array.
+ * @return {array} The input array, with the item moved down one place.
  */
 var MoveDown = function (array, item)
 {

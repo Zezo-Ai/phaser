@@ -7,6 +7,11 @@
 /**
  * Creates a new Interactive Object.
  *
+ * An Interactive Object is a plain data object that stores all of the input-related state for
+ * a Game Object. This includes its hit area geometry, drag state, local pointer coordinates,
+ * and references to the camera and any drop zone target. It is not a class instance, but a
+ * plain object literal returned by this function.
+ *
  * This is called automatically by the Input Manager when you enable a Game Object for input.
  *
  * The resulting Interactive Object is mapped to the Game Object's `input` property.

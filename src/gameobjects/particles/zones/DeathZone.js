@@ -56,7 +56,7 @@ var DeathZone = new Class({
      * @method Phaser.GameObjects.Particles.Zones.DeathZone#willKill
      * @since 3.0.0
      *
-     * @param {Phaser.GameObjects.Particles.Particle} particle - The particle to test against this Death Zones.
+     * @param {Phaser.GameObjects.Particles.Particle} particle - The particle to test against this Death Zone.
      *
      * @return {boolean} Return `true` if the Particle is to be killed, otherwise return `false`.
      */

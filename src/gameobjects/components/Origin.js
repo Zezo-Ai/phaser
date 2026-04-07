@@ -60,9 +60,10 @@ var Origin = {
     _displayOriginY: 0,
 
     /**
-     * The horizontal display origin of this Game Object.
-     * The origin is a normalized value between 0 and 1.
-     * The displayOrigin is a pixel value, based on the size of the Game Object combined with the origin.
+     * The horizontal display origin of this Game Object, expressed in pixels.
+     * Unlike `originX`, which is a normalized value between 0 and 1, the display origin is the
+     * calculated pixel offset derived from the Game Object's width multiplied by its `originX` value.
+     * Setting this property updates `originX` accordingly.
      *
      * @name Phaser.GameObjects.Components.Origin#displayOriginX
      * @type {number}
@@ -84,9 +85,10 @@ var Origin = {
     },
 
     /**
-     * The vertical display origin of this Game Object.
-     * The origin is a normalized value between 0 and 1.
-     * The displayOrigin is a pixel value, based on the size of the Game Object combined with the origin.
+     * The vertical display origin of this Game Object, expressed in pixels.
+     * Unlike `originY`, which is a normalized value between 0 and 1, the display origin is the
+     * calculated pixel offset derived from the Game Object's height multiplied by its `originY` value.
+     * Setting this property updates `originY` accordingly.
      *
      * @name Phaser.GameObjects.Components.Origin#displayOriginY
      * @type {number}
@@ -133,6 +135,9 @@ var Origin = {
 
     /**
      * Sets the origin of this Game Object based on the Pivot values in its Frame.
+     * If the Frame has a custom pivot point defined, the origin is set to match it.
+     * If the Frame does not have a custom pivot, this method falls back to `setOrigin()`,
+     * resetting the origin to the default value of 0.5 for both axes.
      *
      * @method Phaser.GameObjects.Components.Origin#setOriginFromFrame
      * @since 3.0.0

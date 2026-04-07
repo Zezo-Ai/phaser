@@ -21,6 +21,10 @@ var Vector2 = require('../../math/Vector2');
  *
  * A Static Body can collide with other Bodies, but is never moved by collisions.
  *
+ * Static Bodies are ideal for platforms, walls, floors, and other immovable environmental
+ * elements. Unlike Dynamic Bodies, they have no velocity, acceleration, or gravity,
+ * and are not moved by collisions.
+ *
  * Its dynamic counterpart is {@link Phaser.Physics.Arcade.Body}.
  *
  * @class StaticBody
@@ -322,7 +326,7 @@ var StaticBody = new Class({
          * colliding body. If that body is also not pushable, then the separation will be split
          * between them evenly.
          *
-         * If you want your body to never move or seperate at all, see the `setImmovable` method.
+         * If you want your body to never move or separate at all, see the `setImmovable` method.
          *
          * By default, Static Bodies are not pushable.
          *
@@ -407,7 +411,7 @@ var StaticBody = new Class({
         this.collideWorldBounds = false;
 
         /**
-         * Whether this StaticBody is checked for collisions and for which directions. You can set `checkCollision.none = false` to disable collision checks.
+         * Whether this StaticBody is checked for collisions and for which directions. You can set `checkCollision.none = true` to disable collision checks.
          *
          * @name Phaser.Physics.Arcade.StaticBody#checkCollision
          * @type {Phaser.Types.Physics.Arcade.ArcadeBodyCollision}
@@ -874,7 +878,7 @@ var StaticBody = new Class({
      * @method Phaser.Physics.Arcade.StaticBody#deltaX
      * @since 3.0.0
      *
-     * @return {number} The change in this StaticBody's velocity from the previous step. Always zero.
+     * @return {number} The change in horizontal position since the last step, in pixels. Always zero for a Static Body.
      */
     deltaX: function ()
     {
@@ -887,7 +891,7 @@ var StaticBody = new Class({
      * @method Phaser.Physics.Arcade.StaticBody#deltaY
      * @since 3.0.0
      *
-     * @return {number} The change in this StaticBody's velocity from the previous step. Always zero.
+     * @return {number} The change in vertical position since the last step, in pixels. Always zero for a Static Body.
      */
     deltaY: function ()
     {

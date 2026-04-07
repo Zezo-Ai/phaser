@@ -38,7 +38,7 @@ var ColorBand = new Class({
 
         /**
          * Identifies this object as a ColorBand.
-         * Please don't change this.
+         * This property is read-only and must not be modified.
          *
          * @name Phaser.Display.ColorBand#isColorBand
          * @type {boolean}
@@ -122,7 +122,8 @@ var ColorBand = new Class({
          * - 4: CURVE_END - color changes quickly at the end,
          *   flattening at the start.
          *
-         * Under the hood, these are similar to the circular easing function.
+         * Modes 2, 3, and 4 use the circular easing function directly.
+         * Mode 1 uses a related custom formula based on the unit circle.
          *
          * @name Phaser.Display.ColorBand#interpolation
          * @type {number}
@@ -136,7 +137,8 @@ var ColorBand = new Class({
          * This can be one of the following codes:
          *
          * - 0: RGBA - channels are blended directly.
-         *   This can be inaccurate.
+         *   This can produce perceptually inaccurate results, as blending
+         *   in RGB space does not account for how humans perceive color.
          * - 1: HSVA_NEAREST - colors are blended in HSVA space,
          *   better preserving saturation and lightness.
          *   The hue is blended with the shortest angle, e.g. red and blue
@@ -164,8 +166,8 @@ var ColorBand = new Class({
      *
      * @method Phaser.Display.ColorBand#setColors
      * @since 4.0.0
-     * @param {number | string | number[] | Color} [start=0x000000] - The color at the start of the band.
-     * @param {number | string | number[] | Color} [end] - The color at the end of the band. If not specified, equals `start`.
+     * @param {number | string | number[] | Phaser.Display.Color} [start=0x000000] - The color at the start of the band.
+     * @param {number | string | number[] | Phaser.Display.Color} [end] - The color at the end of the band. If not specified, equals `start`.
      * @return {this} This ColorBand.
      */
     setColors: function (start, end)
@@ -221,12 +223,14 @@ var ColorBand = new Class({
     },
 
     /**
-     * Get the color at a given index within this band.
+     * Returns the blended color at a normalized position within this band.
+     * The middle point gamma curve, interpolation mode, and color space are
+     * all applied before blending between `colorStart` and `colorEnd`.
      *
      * @method Phaser.Display.ColorBand#getColor
      * @since 4.0.0
-     * @param {number} index - The index at which to get the color, from 0 to 1.
-     * @return {Phaser.Types.Display.ColorObject} The color at that index.
+     * @param {number} index - The normalized position within the band, where 0 is the band start and 1 is the band end.
+     * @return {Phaser.Types.Display.ColorObject} The blended color at that position.
      */
     getColor: function (index)
     {

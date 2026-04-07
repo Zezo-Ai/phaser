@@ -10,7 +10,7 @@ var PropertyValueSet = require('./PropertyValueSet');
  * Takes an array of Game Objects, or any objects that have the public property `scaleY`
  * and then sets it to the given value.
  *
- * The optional `step` property is applied incrementally, multiplied by each item in the array.
+ * The optional `step` property is applied incrementally, multiplied by the iteration counter.
  *
  * To use this with a Group: `SetScaleY(group.getChildren(), value, step)`
  *

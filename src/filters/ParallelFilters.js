@@ -65,7 +65,10 @@ var ParallelFilters = new Class({
         Controller.call(this, camera, 'FilterParallelFilters');
 
         /**
-         * The top FilterList.
+         * The top FilterList. Filters added to this list receive the original
+         * input and are processed independently from the bottom list. The final
+         * output of this list is passed to the Blend controller as a blend
+         * texture, which is then composited onto the bottom output.
          *
          * @name Phaser.Filters.ParallelFilters#top
          * @type {Phaser.GameObjects.Components.FilterList}
@@ -74,7 +77,10 @@ var ParallelFilters = new Class({
         this.top = new FilterList(camera);
 
         /**
-         * The bottom FilterList.
+         * The bottom FilterList. Filters added to this list receive the original
+         * input and are processed independently from the top list. The final
+         * output of this list serves as the base image onto which the top
+         * output is blended by the Blend controller.
          *
          * @name Phaser.Filters.ParallelFilters#bottom
          * @type {Phaser.GameObjects.Components.FilterList}
@@ -83,8 +89,10 @@ var ParallelFilters = new Class({
         this.bottom = new FilterList(camera);
 
         /**
-         * The Blend filter controller that combines the top and bottom FilterLists.
-         * This is just another filter controller.
+         * The Blend filter controller that composites the top and bottom
+         * FilterList outputs into a single result. It is a standard
+         * {@link Phaser.Filters.Blend} controller whose blend mode and amount
+         * can be configured to control how the two outputs are combined.
          * See {@link Phaser.Filters.Blend} for more information.
          *
          * The `texture` property of the Blend controller will be

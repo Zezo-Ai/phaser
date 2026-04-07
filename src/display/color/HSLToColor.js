@@ -10,15 +10,20 @@ var HueToComponent = require('./HueToComponent');
 /**
  * Converts HSL (hue, saturation and lightness) values to a Phaser Color object.
  *
+ * All three input values should be in the range 0 to 1. If the saturation is 0
+ * the color is treated as achromatic (greyscale). Otherwise the standard HSL-to-RGB
+ * algorithm is applied, using the lightness value to derive the intermediate q and p
+ * coefficients before delegating each channel to `HueToComponent`.
+ *
  * @function Phaser.Display.Color.HSLToColor
  * @since 3.0.0
  *
  * @param {number} h - The hue value in the range 0 to 1.
  * @param {number} s - The saturation value in the range 0 to 1.
  * @param {number} l - The lightness value in the range 0 to 1.
- * @param {Phaser.Display.Color} [color] - The color where the new color will be stored. If not defined, a new color object is returned.
+ * @param {Phaser.Display.Color} [color] - An optional Color object to populate with the converted values. If not provided, a new Color object is created and returned.
  *
- * @return {Phaser.Display.Color} A Color object created from the results of the h, s and l values.
+ * @return {Phaser.Display.Color} The Color object populated with the RGB values derived from the given h, s and l inputs. This is either the `color` argument (if provided) or a newly created Color object.
  */
 var HSLToColor = function (h, s, l, color)
 {

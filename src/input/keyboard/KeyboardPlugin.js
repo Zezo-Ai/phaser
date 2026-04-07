@@ -391,7 +391,7 @@ var KeyboardPlugin = new Class({
     },
 
     /**
-     * Creates and returns an object containing 4 hotkeys for Up, Down, Left and Right, and also Space Bar and shift.
+     * Creates and returns an object containing 6 hotkeys for Up, Down, Left and Right, and also Space Bar and Shift.
      *
      * @method Phaser.Input.Keyboard.KeyboardPlugin#createCursorKeys
      * @since 3.10.0

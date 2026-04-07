@@ -9,8 +9,11 @@ var GetLineToCircle = require('./GetLineToCircle');
 var CircleToRectangle = require('./CircleToRectangle');
 
 /**
- * Checks for intersection between a circle and a rectangle,
- * and returns the intersection points as a Point object array.
+ * Checks for intersection between a circle and a rectangle, and returns the
+ * intersection points as an array of Point objects. If the shapes do not intersect,
+ * an empty array is returned. If they do intersect, each of the rectangle's four
+ * edges is tested against the circle and any intersection points found are added to
+ * the output array.
  *
  * @function Phaser.Geom.Intersects.GetCircleToRectangle
  * @since 3.0.0

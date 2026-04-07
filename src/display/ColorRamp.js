@@ -74,6 +74,10 @@ var ColorRamp = new Class({
         this.gpuEncode = gpuEncode;
 
         /**
+         * The Phaser Texture wrapping the GPU data texture for this ramp.
+         * This is registered with the Scene's Texture Manager under a unique key
+         * so it can be referenced elsewhere. It is not intended for display.
+         *
          * @name Phaser.Display.ColorRamp#dataTexture
          * @type {?Phaser.Textures.Texture}
          * @since 4.0.0
@@ -331,7 +335,7 @@ var ColorRamp = new Class({
      * @method Phaser.Display.ColorRamp#fixFit
      * @since 4.0.0
      * @param {number} start - Override the start of the first band.
-     * @param {number} end - Override the end of the first band.
+     * @param {number} end - Override the end of the last band.
      * @param {boolean} purgeZeroLength - Whether to discard bands that now have 0 size.
      * @param {boolean} encode - Whether to reencode the data texture.
      * @return {this} - This ColorRamp instance.

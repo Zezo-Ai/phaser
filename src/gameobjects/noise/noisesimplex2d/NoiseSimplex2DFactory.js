@@ -16,7 +16,7 @@ var GameObjectFactory = require('../../GameObjectFactory');
  * @webglOnly
  * @since 4.0.0
  *
- * @param {(string|Phaser.Types.GameObjects.NoiseSimplex2D.NoiseSimplex2DQuadConfig)} [config] - The configuration object this NoiseSimplex2D will use. This defines the shape and appearance of the noisesimplex2d texture.
+ * @param {(string|Phaser.Types.GameObjects.NoiseSimplex2D.NoiseSimplex2DQuadConfig)} [config] - The configuration object this NoiseSimplex2D will use. This defines the shape and appearance of the NoiseSimplex2D texture.
  * @param {number} [x=0] - The horizontal position of this Game Object in the world.
  * @param {number} [y=0] - The vertical position of this Game Object in the world.
  * @param {number} [width=128] - The width of the Game Object.

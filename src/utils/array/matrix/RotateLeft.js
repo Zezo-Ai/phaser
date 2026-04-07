@@ -7,7 +7,7 @@
 var RotateMatrix = require('./RotateMatrix');
 
 /**
- * Rotates the array matrix to the left (or 90 degrees)
+ * Rotates the array matrix to the left (counter-clockwise) by 90 degrees per step.
  *
  * A matrix is a two-dimensional array (array of arrays), where all sub-arrays (rows)
  * have the same length. There must be at least two rows. This is an example matrix:
@@ -30,7 +30,7 @@ var RotateMatrix = require('./RotateMatrix');
  * @genericUse {T[][]} - [matrix,$return]
  *
  * @param {T[][]} [matrix] - The array to rotate.
- * @param {number} [amount=1] - The number of times to rotate the matrix.
+ * @param {number} [amount=1] - The number of times to rotate the matrix 90 degrees to the left.
  *
  * @return {T[][]} The rotated matrix array. The source matrix should be discarded for the returned matrix.
  */

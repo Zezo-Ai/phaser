@@ -8,7 +8,12 @@ var BlendModes = require('../renderer/BlendModes');
 var GetAdvancedValue = require('../utils/object/GetAdvancedValue');
 
 /**
- * Builds a Game Object using the provided configuration object.
+ * Builds a Game Object using the provided configuration object, applying properties such as
+ * position, depth, flip, scale, scroll factor, rotation, alpha, origin, blend mode, and
+ * visibility. If the config's `add` property is `true` (the default), the Game Object is
+ * added to the Scene's Display List. If the Game Object has a `preUpdate` method it is also
+ * added to the Scene's Update List. This function is used internally by Game Object factories
+ * and creators, and is not typically called directly.
  *
  * @function Phaser.GameObjects.BuildGameObject
  * @since 3.0.0

@@ -15,6 +15,11 @@ var Random = require('./Random');
  * @classdesc
  * An Ellipse object.
  *
+ * An Ellipse is defined by its center position (x, y), a total width, and a total height. It can be
+ * used for geometric intersection tests (point-in-ellipse containment), sampling evenly-spaced or random
+ * points on its circumference or interior, and as a lightweight shape descriptor for collision or
+ * hit-area purposes.
+ *
  * This is a geometry object, containing numerical values and related methods to inspect and modify them.
  * It is not a Game Object, in that you cannot add it to the display list, and it has no texture.
  * To render an Ellipse you should look at the capabilities of the Graphics class.
@@ -109,7 +114,7 @@ var Ellipse = new Class({
     },
 
     /**
-     * Returns a Point object containing the coordinates of a point on the circumference of the Ellipse
+     * Returns a Vector2 object containing the coordinates of a point on the circumference of the Ellipse
      * based on the given angle normalized to the range 0 to 1. I.e. a value of 0.5 will give the point
      * at 180 degrees around the ellipse.
      *
@@ -206,7 +211,8 @@ var Ellipse = new Class({
     },
 
     /**
-     * Sets the position of this Ellipse.
+     * Sets the position of this Ellipse. If the `y` argument is omitted, both the x and y positions
+     * will be set to the value of `x`.
      *
      * @method Phaser.Geom.Ellipse#setPosition
      * @since 3.0.0
@@ -227,8 +233,8 @@ var Ellipse = new Class({
     },
 
     /**
-     * Sets the size of this Ellipse.
-     * Does not change its position.
+     * Sets the size of this Ellipse. Does not change its position.
+     * If the `height` argument is omitted it will be set equal to `width`, producing a circle.
      *
      * @method Phaser.Geom.Ellipse#setSize
      * @since 3.0.0
@@ -249,7 +255,7 @@ var Ellipse = new Class({
     },
 
     /**
-     * Checks to see if the Ellipse is empty: has a width or height equal to zero.
+     * Checks to see if the Ellipse is empty: has a width or height of zero or less.
      *
      * @method Phaser.Geom.Ellipse#isEmpty
      * @since 3.0.0

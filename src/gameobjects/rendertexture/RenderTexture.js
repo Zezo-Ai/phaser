@@ -334,10 +334,10 @@ var RenderTexture = new Class({
      * @method Phaser.GameObjects.RenderTexture#clear
      * @since 3.2.0
      *
-     * @param {number} [x=0] - The left coordinate of the fill rectangle.
-     * @param {number} [y=0] - The top coordinate of the fill rectangle.
-     * @param {number} [width=this.width] - The width of the fill rectangle.
-     * @param {number} [height=this.height] - The height of the fill rectangle.
+     * @param {number} [x=0] - The left coordinate of the clear rectangle.
+     * @param {number} [y=0] - The top coordinate of the clear rectangle.
+     * @param {number} [width=this.width] - The width of the clear rectangle.
+     * @param {number} [height=this.height] - The height of the clear rectangle.
      *
      * @return {this} This Render Texture instance.
      */
@@ -470,7 +470,7 @@ var RenderTexture = new Class({
      * @param {Phaser.GameObjects.GameObject} entry - Any renderable GameObject.
      * @param {Phaser.Types.Textures.CaptureConfig} config - The configuration object for the capture.
      *
-     * @return {this} This Dynamic Texture instance.
+     * @return {this} This Render Texture instance.
      */
     capture: function (entry, config)
     {

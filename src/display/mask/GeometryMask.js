@@ -91,7 +91,7 @@ var GeometryMask = new Class({
     },
 
     /**
-     * Restore the canvas context's previous clipping path, thus turning off the mask for it.
+     * Restores the canvas context's previous clipping path, thus turning off the mask for it.
      *
      * @method Phaser.Display.Masks.GeometryMask#postRenderCanvas
      * @since 3.0.0

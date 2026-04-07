@@ -11,7 +11,7 @@ var LineToRectangle = require('./LineToRectangle');
 
 /**
  * Checks for intersection between the Line and a Rectangle shape,
- * and returns the intersection points as a Point object array.
+ * and returns the intersection points as a Vector2 array.
  *
  * @function Phaser.Geom.Intersects.GetLineToRectangle
  * @since 3.0.0

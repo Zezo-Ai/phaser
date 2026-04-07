@@ -11,7 +11,9 @@ var Vector2 = require('../math/Vector2');
 
 /**
  * @classdesc
- * A quadratic Bézier curve constructed from two control points.
+ * A quadratic Bézier curve constructed from three points: a start point, a single control
+ * point, and an end point. This is a second-degree Bézier curve, where the control point
+ * influences the curvature of the path between the start and end points.
  *
  * @class QuadraticBezier
  * @extends Phaser.Curves.Curve
@@ -59,7 +61,7 @@ var QuadraticBezier = new Class({
         this.p1 = p1;
 
         /**
-         * The second control point.
+         * The end point of the curve.
          *
          * @name Phaser.Curves.QuadraticBezier#p2
          * @type {Phaser.Math.Vector2}
@@ -88,7 +90,7 @@ var QuadraticBezier = new Class({
     },
 
     /**
-     * Get the resolution of the curve.
+     * Returns the resolution of this curve. For a Quadratic Bezier, the resolution is equal to the number of divisions requested.
      *
      * @method Phaser.Curves.QuadraticBezier#getResolution
      * @since 3.2.0
@@ -188,7 +190,7 @@ var QuadraticBezier = new Class({
 });
 
 /**
- * Creates a curve from a JSON object, e. g. created by `toJSON`.
+ * Creates a curve from a JSON object, e.g. created by `toJSON`.
  *
  * @function Phaser.Curves.QuadraticBezier.fromJSON
  * @since 3.2.0

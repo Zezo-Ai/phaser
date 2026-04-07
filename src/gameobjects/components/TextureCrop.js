@@ -10,7 +10,7 @@ var Frame = require('../../textures/Frame');
 var _FLAG = 8; // 1000
 
 /**
- * Provides methods used for getting and setting the texture of a Game Object.
+ * Provides methods used for getting and setting the texture of a Game Object, with integrated support for cropping. This is used by Game Objects like Image and Sprite that need both texture management and crop functionality in a single mixin.
  *
  * @namespace Phaser.GameObjects.Components.TextureCrop
  * @since 3.0.0

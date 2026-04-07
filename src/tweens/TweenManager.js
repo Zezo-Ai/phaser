@@ -197,7 +197,7 @@ var TweenManager = new Class({
         this.lagSkip = 33;
 
         /**
-         * An internal value that holds the fps rate.
+         * An internal value that holds the minimum elapsed time between updates, in milliseconds, derived from the target frame rate.
          *
          * @name Phaser.Tweens.TweenManager#gap
          * @type {number}
@@ -415,7 +415,7 @@ var TweenManager = new Class({
     },
 
     /**
-     * Create a sequence of Tweens, chained to one-another, and add them to this Tween Manager.
+     * Create a sequence of Tweens, chained to one another, and add them to this Tween Manager.
      *
      * The tweens are played in order, from start to finish. You can optionally set the chain
      * to repeat as many times as you like. Once the chain has finished playing, or repeating if set,
@@ -443,10 +443,10 @@ var TweenManager = new Class({
     },
 
     /**
-     * Returns an array containing this Tween and all Tweens chained to it,
+     * Returns an array containing the given Tween and all Tweens chained to it,
      * in the order in which they will be played.
      *
-     * If there are no chained Tweens an empty array is returned.
+     * If there are no chained Tweens, an empty array is returned.
      *
      * @method Phaser.Tweens.TweenManager#getChainedTweens
      * @since 3.60.0
@@ -567,19 +567,19 @@ var TweenManager = new Class({
      * @since 3.19.0
      *
      * @param {(number|number[])} value - The amount to stagger by, or an array containing two elements representing the min and max values to stagger between.
-     * @param {Phaser.Types.Tweens.StaggerConfig} config - The configuration object for the Stagger function.
+     * @param {Phaser.Types.Tweens.StaggerConfig} [config] - The configuration object for the Stagger function.
      *
      * @return {function} The stagger function.
      */
-    stagger: function (value, options)
+    stagger: function (value, config)
     {
-        return StaggerBuilder(value, options);
+        return StaggerBuilder(value, config);
     },
 
     /**
      * Set the limits that are used when a browser encounters lag, or delays that cause the elapsed
      * time between two frames to exceed the expected amount. If this occurs, the Tween Manager will
-     * act as if the 'skip' amount of times has passed, in order to maintain strict tween sequencing.
+     * act as if the 'skip' amount of time has passed, in order to maintain strict tween sequencing.
      *
      * This is enabled by default with the values 500ms for the lag limit and 33ms for the skip.
      *

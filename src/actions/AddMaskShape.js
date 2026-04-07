@@ -27,11 +27,11 @@ var FitToRegion = require('./FitToRegion');
  *
  * The action supports an optional Blur effect, applied to the shape.
  * This is good for soft edges on masks.
- * You can add padding to the region to make room for wide soft edges.
+ * You can use `config.padding` to shrink the shape region inward, leaving room for the blur to spread outward to the intended boundary.
  *
  * The Shape is removed from the scene upon creation.
  * You don't need to manage its life cycle; it should be garbage collected
- * once the mask controller is destroyed, usually when the scene or target
+ * once the Mask filter is destroyed, usually when the scene or target
  * is shut down.
  * If you want to access the Shape, it is available on the mask filter.
  *

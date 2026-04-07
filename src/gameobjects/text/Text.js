@@ -43,7 +43,7 @@ var UUID = require('../../utils/string/UUID');
  *
  * You can only display fonts that are currently loaded and available to the browser: therefore fonts must
  * be pre-loaded. Phaser does not do this for you, so you will require the use of a 3rd party font loader,
- * or have the fonts ready available in the CSS on the page in which your Phaser game resides.
+ * or have the fonts readily available in the CSS on the page in which your Phaser game resides.
  *
  * See {@link http://www.jordanm.co.uk/tinytype this compatibility table} for the available default fonts
  * across mobile browsers.
@@ -363,8 +363,10 @@ var Text = new Class({
     },
 
     /**
-     * Greedy wrapping algorithm that will wrap words as the line grows longer than its horizontal
-     * bounds.
+     * Applies word wrapping to the given text and returns the result. If a custom word wrap
+     * callback has been set, it will be invoked. Otherwise, the advanced or basic word wrap
+     * algorithm will be used, depending on the style configuration. If no word wrap settings
+     * are active, the original text is returned unchanged.
      *
      * @method Phaser.GameObjects.Text#runWordWrap
      * @since 3.0.0
@@ -764,14 +766,14 @@ var Text = new Class({
      * special characters:
      *
      * ```javascript
-     * Text.setFont('"Press Start 2P"');
+     * Text.setFontFamily('"Press Start 2P"');
      * ```
      *
      * Equally, if you wish to provide a list of fallback fonts, then you should ensure they are all
      * quoted properly, too:
      *
      * ```javascript
-     * Text.setFont('Georgia, "Goudy Bookletter 1911", Times, serif');
+     * Text.setFontFamily('Georgia, "Goudy Bookletter 1911", Times, serif');
      * ```
      *
      * @method Phaser.GameObjects.Text#setFontFamily
@@ -1121,11 +1123,12 @@ var Text = new Class({
     },
 
     /**
-     * Set the text padding.
+     * Sets the padding applied around the text content when calculating the canvas size.
      *
-     * 'left' can be an object.
-     *
-     * If only 'left' and 'top' are given they are treated as 'x' and 'y'.
+     * The first argument can be either a number or a padding configuration object. When a number
+     * is given, it is applied to all four sides unless the other arguments override them. When an
+     * object is given, you can specify `left`, `right`, `top`, and `bottom` individually, or use
+     * `x` to set both left and right simultaneously, and `y` to set both top and bottom.
      *
      * @method Phaser.GameObjects.Text#setPadding
      * @since 3.0.0
@@ -1251,7 +1254,12 @@ var Text = new Class({
     },
 
     /**
-     * Update the displayed text.
+     * Recalculates and re-renders the text content onto the internal canvas. This is called
+     * automatically whenever the text string or any style property changes. It handles word
+     * wrapping, text sizing, multi-line layout, alignment, shadows, stroke, and letter spacing.
+     * If the renderer is WebGL, the updated canvas is re-uploaded to the GPU as a new texture.
+     * You should call this manually only if you have updated `lineSpacing` or `letterSpacing`
+     * directly without using their corresponding setter methods.
      *
      * @method Phaser.GameObjects.Text#updateText
      * @since 3.0.0

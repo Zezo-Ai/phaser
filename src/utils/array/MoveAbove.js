@@ -14,9 +14,8 @@
  * @since 3.55.0
  *
  * @param {array} array - The input array.
- * @param {*} item1 - The element to move above base element.
+ * @param {*} item1 - The element to move above the base element.
  * @param {*} item2 - The base element.
- *
  *
  * @return {array} The input array.
  */

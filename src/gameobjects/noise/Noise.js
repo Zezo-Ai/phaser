@@ -17,7 +17,7 @@ var NoiseFrag = require('../../renderer/webgl/shaders/Noise-frag');
  * You can manipulate this object like any other, make it interactive,
  * and use it in filters and masks to create visually stunning effects.
  *
- * Behind the scenes, a Noise is a {@see Phaser.GameObjects.Shader}
+ * Behind the scenes, a Noise is a {@link Phaser.GameObjects.Shader}
  * using a specific shader program.
  *
  * Noise or 'white noise' is simply random values.
@@ -101,7 +101,7 @@ var Noise = new Class({
         this.noisePower = config.noisePower === undefined ? 1 : config.noisePower;
 
         /**
-         * The color of the middle of the cells.
+         * The color mapped to low noise values (approaching 0).
          *
          * The default is black. You can set any color, and change the alpha.
          *
@@ -112,7 +112,7 @@ var Noise = new Class({
         this.noiseColorStart = new Color(0, 0, 0);
 
         /**
-         * The color of the edge of the cells.
+         * The color mapped to high noise values (approaching 1).
          *
          * The default is white. You can set any color, and change the alpha.
          *
@@ -162,8 +162,8 @@ var Noise = new Class({
      *
      * @method Phaser.GameObjects.Noise#setNoiseColor
      * @since 4.0.0
-     * @param {number | string | number[] | Color} [start=0x000000] - The color in the middle of the cells.
-     * @param {number | string | number[] | Color} [end=0xffffff] - The color at the edge of the cells.
+     * @param {number | string | number[] | Phaser.Display.Color} [start=0x000000] - The color mapped to low noise values (approaching 0).
+     * @param {number | string | number[] | Phaser.Display.Color} [end=0xffffff] - The color mapped to high noise values (approaching 1).
      * @return {this} This game object.
      */
     setNoiseColor: function (start, end)

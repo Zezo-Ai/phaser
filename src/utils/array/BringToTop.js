@@ -11,8 +11,8 @@
  * @function Phaser.Utils.Array.BringToTop
  * @since 3.4.0
  *
- * @param {array} array - The array.
- * @param {*} item - The element to move.
+ * @param {array} array - The array to modify.
+ * @param {*} item - The element to move to the top of the array.
  *
  * @return {*} The element that was moved.
  */

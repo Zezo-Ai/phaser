@@ -268,7 +268,7 @@ var KeyboardManager = new Class({
      * By default when a key is pressed Phaser will not stop the event from propagating up to the browser.
      * There are some keys this can be annoying for, like the arrow keys or space bar, which make the browser window scroll.
      *
-     * This `addCapture` method enables consuming keyboard event for specific keys so it doesn't bubble up to the the browser
+     * This `addCapture` method enables consuming keyboard events for specific keys so they don't bubble up to the browser
      * and cause the default browser behavior.
      *
      * Please note that keyboard captures are global. This means that if you call this method from within a Scene, to say prevent

@@ -198,7 +198,7 @@ var TouchManager = new Class({
     /**
      * Attempts to disable the context menu from appearing if you touch-hold on the browser.
      *
-     * Works by listening for the `contextmenu` event and prevent defaulting it.
+     * Works by listening for the `contextmenu` event and calling `preventDefault()` on it.
      *
      * Use this if you need to disable the OS context menu on mobile.
      *

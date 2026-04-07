@@ -995,7 +995,7 @@ var InputManager = new Class({
      * @param {number} x - The translated x coordinate for the hit test.
      * @param {number} y - The translated y coordinate for the hit test.
      *
-     * @return {boolean} `true` if the coordinates were inside the Game Objects hit area, otherwise `false`.
+     * @return {boolean} `true` if the coordinates were inside the Interactive Object's hit area, otherwise `false`.
      */
     pointWithinInteractiveObject: function (object, x, y)
     {

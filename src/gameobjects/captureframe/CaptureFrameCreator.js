@@ -11,6 +11,16 @@ var CaptureFrame = require('./CaptureFrame');
 /**
  * Creates a new CaptureFrame Game Object and returns it.
  *
+ * A CaptureFrame is a special Game Object that captures the current state of the WebGL framebuffer
+ * at the point it is rendered in the display list. Objects rendered before it are captured to a
+ * named texture; objects rendered after it are not. This is useful for full-scene post-processing
+ * effects such as a layer of water or a distortion overlay. The captured texture can then be
+ * referenced by key and used on other Game Objects or filters.
+ *
+ * This is a WebGL-only feature and has no effect in Canvas mode. The Camera must have
+ * `forceComposite` enabled, or the CaptureFrame must be used within a framebuffer context
+ * (such as a Filter, DynamicTexture, or a Camera with alpha between 0 and 1).
+ *
  * Note: This method will only be available if the CaptureFrame Game Object has been built into Phaser.
  *
  * @method Phaser.GameObjects.GameObjectCreator#captureFrame

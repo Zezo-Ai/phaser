@@ -15,6 +15,10 @@ var IsPlainObject = require('../../utils/object/IsPlainObject');
  * @classdesc
  * A single SVG File suitable for loading by the Loader.
  *
+ * SVG files are loaded as text, optionally resized according to a width, height, or scale factor, then rasterized
+ * to a bitmap image and stored in the Texture Manager. Once loaded, the resulting texture can be used by any
+ * Game Object that accepts a texture key, just like a PNG or JPEG image.
+ *
  * These are created when you use the Phaser.Loader.LoaderPlugin#svg method and are not typically created directly.
  *
  * For documentation about what all the arguments and configuration options mean please see Phaser.Loader.LoaderPlugin#svg.
@@ -72,7 +76,10 @@ var SVGFile = new Class({
 
     /**
      * Called automatically by Loader.nextFile.
-     * This method controls what extra work this File does with its loaded data.
+     * This method parses the raw SVG text response, optionally resizes the SVG by modifying its width, height,
+     * or viewBox attributes according to the file's svgConfig, then serializes the result into a Blob and loads
+     * it into an HTMLImageElement. On browsers that do not support object URLs (such as older versions of Safari),
+     * it falls back to a data URI. Once the image has loaded, `onProcessComplete` is called to finalize the file.
      *
      * @method Phaser.Loader.FileTypes.SVGFile#onProcess
      * @since 3.7.0

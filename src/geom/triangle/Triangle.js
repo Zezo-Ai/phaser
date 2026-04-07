@@ -14,9 +14,13 @@ var Random = require('./Random');
 
 /**
  * @classdesc
- * A triangle is a plane created by connecting three points.
- * The first two arguments specify the first point, the middle two arguments
- * specify the second point, and the last two arguments specify the third point.
+ * A Triangle is a closed polygon defined by three vertices in 2D space, useful for hit testing,
+ * defining spawn or trigger regions, and geometric calculations. It is a geometry object only —
+ * not a Game Object — and cannot be rendered directly. To draw a Triangle to the screen, pass it
+ * to a Graphics Game Object's `strokeTriangleShape` or `fillTriangleShape` method.
+ *
+ * The three vertices are stored as coordinate pairs (`x1`,`y1`), (`x2`,`y2`), and (`x3`,`y3`).
+ * All coordinates default to `0` if not provided.
  *
  * @class Triangle
  * @memberof Phaser.Geom
@@ -132,7 +136,7 @@ var Triangle = new Class({
     },
 
     /**
-     * Returns a specific point on the triangle.
+     * Returns a point at a given normalized position along the perimeter of the triangle.
      *
      * @method Phaser.Geom.Triangle#getPoint
      * @since 3.0.0
@@ -150,7 +154,7 @@ var Triangle = new Class({
     },
 
     /**
-     * Calculates a list of evenly distributed points on the triangle. It is either possible to pass an amount of points to be generated (`quantity`) or the distance between two points (`stepRate`).
+     * Calculates a list of evenly distributed points along the perimeter of the triangle. Either pass the number of points to generate (`quantity`) or the distance between consecutive points (`stepRate`).
      *
      * @method Phaser.Geom.Triangle#getPoints
      * @since 3.0.0
@@ -169,7 +173,7 @@ var Triangle = new Class({
     },
 
     /**
-     * Returns a random point along the triangle.
+     * Returns a random point from within the area of the triangle.
      *
      * @method Phaser.Geom.Triangle#getRandomPoint
      * @since 3.0.0
@@ -222,7 +226,7 @@ var Triangle = new Class({
     },
 
     /**
-     * Returns a Line object that corresponds to Line A of this Triangle.
+     * Returns a Line object that corresponds to Line A of this Triangle, running from vertex 1 (`x1`, `y1`) to vertex 2 (`x2`, `y2`).
      *
      * @method Phaser.Geom.Triangle#getLineA
      * @since 3.0.0
@@ -243,7 +247,7 @@ var Triangle = new Class({
     },
 
     /**
-     * Returns a Line object that corresponds to Line B of this Triangle.
+     * Returns a Line object that corresponds to Line B of this Triangle, running from vertex 2 (`x2`, `y2`) to vertex 3 (`x3`, `y3`).
      *
      * @method Phaser.Geom.Triangle#getLineB
      * @since 3.0.0
@@ -264,7 +268,7 @@ var Triangle = new Class({
     },
 
     /**
-     * Returns a Line object that corresponds to Line C of this Triangle.
+     * Returns a Line object that corresponds to Line C of this Triangle, running from vertex 3 (`x3`, `y3`) back to vertex 1 (`x1`, `y1`), closing the shape.
      *
      * @method Phaser.Geom.Triangle#getLineC
      * @since 3.0.0

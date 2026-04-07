@@ -5,7 +5,7 @@
  */
 
 /**
- * Nudges (translates) the top left corner of a Rectangle by a given offset.
+ * Translates a Rectangle by the given horizontal and vertical amounts, moving its position while preserving its size.
  *
  * @function Phaser.Geom.Rectangle.Offset
  * @since 3.0.0

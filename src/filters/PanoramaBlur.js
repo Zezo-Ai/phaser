@@ -41,7 +41,7 @@ var Controller = require('./Controller');
  * // Cache a panorama image in a scene.
  * // Assume there is a panorama texture called 'panorama'.
  * var panorama = this.add.image(0, 0, 'panorama');
- * panorama.setPosition(panoramaBlurred.width / 2, panoramaBlurred.height / 2);
+ * panorama.setPosition(panorama.width / 2, panorama.height / 2);
  * panorama.enableFilters().filters.internal.addPanoramaBlur({});
  *
  * var panoramaBlurred = this.textures.addDynamicTexture('panorama-blurred', panorama.width, panorama.height);
@@ -101,7 +101,7 @@ var PanoramaBlur = new Class({
         this.samplesY = config.samplesY || 16;
 
         /**
-         * An exponent applied to samples. Power above 1 increases darkness, allowing brighter colors to dominate. Power below 1 increases brightness, reducing the influence of brighter colors. To simulate an HDR environment with bright sunlight that cannot be represented in sRGB color, use high power.
+         * An exponent applied to samples. Power above 1 darkens the samples overall, but bright colors are suppressed less than dark ones, causing them to become relatively more dominant in the result. Power below 1 brightens samples overall, reducing the contrast between bright and dark colors. To simulate an HDR environment with bright sunlight that cannot be represented in sRGB color, use high power.
          *
          * @name Phaser.Filters.PanoramaBlur#power
          * @type {number}

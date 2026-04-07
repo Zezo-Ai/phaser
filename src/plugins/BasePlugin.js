@@ -11,6 +11,11 @@ var Class = require('../utils/Class');
  * A Global Plugin is installed just once into the Game owned Plugin Manager.
  * It can listen for Game events and respond to them.
  *
+ * Custom global plugins should extend this class and implement any needed lifecycle
+ * methods: `init` (called when the plugin is first created), `start` (called when the
+ * plugin is started), `stop` (called when the plugin is stopped), and `destroy` (called
+ * when the Game shuts down).
+ *
  * @class BasePlugin
  * @memberof Phaser.Plugins
  * @constructor
@@ -105,8 +110,10 @@ var BasePlugin = new Class({
     },
 
     /**
-     * Game instance has been destroyed.
-     * You must release everything in here, all references, all objects, free it all up.
+     * Called by the PluginManager when this plugin is being destroyed. This happens either
+     * when the Game shuts down or when the plugin is explicitly removed from the PluginManager.
+     * It nulls out all internal references to the game, scene, and plugin manager to prevent
+     * memory leaks. Override this method in your own plugin to release any resources it holds.
      *
      * @method Phaser.Plugins.BasePlugin#destroy
      * @since 3.8.0

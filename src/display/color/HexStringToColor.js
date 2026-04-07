@@ -9,7 +9,7 @@ var Color = require('./Color');
 /**
  * Converts a hex string into a Phaser Color object.
  *
- * The hex string can supplied as `'#0033ff'` or the short-hand format of `'#03f'`; it can begin with an optional "#" or "0x", or be unprefixed.
+ * The hex string can be supplied as `'#0033ff'` or the short-hand format of `'#03f'`; it can begin with an optional "#" or "0x", or be unprefixed.
  *
  * An alpha channel is _not_ supported.
  *

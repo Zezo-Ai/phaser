@@ -74,7 +74,9 @@ var LightsPlugin = new Class({
     },
 
     /**
-     * Boot the Lights Plugin.
+     * Handles the boot event from the Scene's Event Emitter, subscribing to
+     * the Scene's `shutdown` and `destroy` events so the plugin can clean up
+     * its resources when the Scene is stopped or destroyed.
      *
      * @method Phaser.GameObjects.LightsPlugin#boot
      * @since 3.0.0

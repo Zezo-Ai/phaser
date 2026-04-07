@@ -5,7 +5,7 @@
  */
 
 /**
- * Reverses the rows in the given Array Matrix.
+ * Reverses the order of elements in each row of the given Array Matrix.
  *
  * A matrix is a two-dimensional array (array of arrays), where all sub-arrays (rows)
  * have the same length. There must be at least two rows. This is an example matrix:
@@ -27,9 +27,9 @@
  * @generic T
  * @genericUse {T[][]} - [matrix,$return]
  *
- * @param {T[][]} [matrix] - The array matrix to reverse the rows for.
+ * @param {T[][]} [matrix] - The array matrix to reverse the elements of each row for.
  *
- * @return {T[][]} The row reversed matrix.
+ * @return {T[][]} The matrix with each row's elements reversed in place.
  */
 var ReverseRows = function (matrix)
 {

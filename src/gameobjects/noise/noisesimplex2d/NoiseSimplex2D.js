@@ -235,7 +235,7 @@ var NoiseSimplex2D = new Class({
          * How much to increase flow progression between noise octaves.
          *
          * This is used as the base of an exponent.
-         * The default 2 doubles the frequency every octave.
+         * The default 2 doubles the flow progression every octave.
          * Lower values scale slower.
          * Higher values scale higher.
          *
@@ -282,7 +282,7 @@ var NoiseSimplex2D = new Class({
          * in the warp.
          *
          * This is used as the base of an exponent.
-         * The default 2 doubles the frequency every octave.
+         * The default 2 doubles the flow progression every octave.
          * Lower values scale slower.
          * Higher values scale higher.
          *
@@ -437,8 +437,8 @@ var NoiseSimplex2D = new Class({
      *
      * @method Phaser.GameObjects.NoiseSimplex2D#setNoiseColor
      * @since 4.0.0
-     * @param {number | string | number[] | Color} [start=0x000000] - The color in the middle of the cells.
-     * @param {number | string | number[] | Color} [end=0xffffff] - The color at the edge of the cells.
+     * @param {number | string | number[] | Phaser.Display.Color} [start=0x000000] - The color when the noise value is 0, corresponding to `noiseColorStart`.
+     * @param {number | string | number[] | Phaser.Display.Color} [end=0xffffff] - The color when the noise value is 1, corresponding to `noiseColorEnd`.
      * @return {this} This game object.
      */
     setNoiseColor: function (start, end)
@@ -571,7 +571,7 @@ var NoiseSimplex2D = new Class({
      * @private
      * @since 4.0.0
      * @param {Phaser.Renderer.WebGL.DrawingContext} drawingContext - A reference to the current drawing context.
-     * @param {Phaser.GameObjects.Gradient} gameObject - The game object which is rendering.
+     * @param {Phaser.GameObjects.NoiseSimplex2D} gameObject - The game object which is rendering.
      * @param {Phaser.Renderer.WebGL.RenderNodes.ShaderQuad} renderNode - The render node currently rendering.
      */
     _updateShaderConfig: function (drawingContext, gameObject, renderNode)

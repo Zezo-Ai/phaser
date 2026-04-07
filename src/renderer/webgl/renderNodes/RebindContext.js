@@ -54,6 +54,16 @@ var RebindContext = new Class({
         };
     },
 
+    /**
+     * Resets the WebGL context to a default state after an external renderer
+     * has finished rendering. This clears the current framebuffer's stencil
+     * and depth renderbuffers, rebinds the WebGL state with null resources,
+     * and unbinds all texture units to force rebinding on next use.
+     *
+     * @method Phaser.Renderer.WebGL.RenderNodes.RebindContext#run
+     * @since 4.0.0
+     * @param {Phaser.Renderer.WebGL.DrawingContext} displayContext - The current drawing context.
+     */
     run: function (displayContext)
     {
         this.onRunBegin(displayContext);

@@ -127,13 +127,29 @@ var Sprite = new Class({
         }
     },
 
-    //  Overrides Game Object method
+    /**
+     * Called automatically by Phaser when this Sprite is added to a Scene.
+     *
+     * Registers this Sprite with the Scene's update list so that its `preUpdate` method
+     * is called each game step, allowing animations to advance each frame.
+     *
+     * @method Phaser.GameObjects.Sprite#addedToScene
+     * @since 3.53.0
+     */
     addedToScene: function ()
     {
         this.scene.sys.updateList.add(this);
     },
 
-    //  Overrides Game Object method
+    /**
+     * Called automatically by Phaser when this Sprite is removed from a Scene.
+     *
+     * Unregisters this Sprite from the Scene's update list so that its `preUpdate` method
+     * is no longer called each game step.
+     *
+     * @method Phaser.GameObjects.Sprite#removedFromScene
+     * @since 3.53.0
+     */
     removedFromScene: function ()
     {
         this.scene.sys.updateList.remove(this);

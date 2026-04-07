@@ -553,7 +553,7 @@ var BitmapText = new Class({
      * @param {number} [start=0] - The starting character to begin the tint at. If negative, it counts back from the end of the text.
      * @param {number} [length=1] - The number of characters to tint. Remember that spaces count as a character too. Pass -1 to tint all characters from `start` onwards.
      * @param {number} [tintMode=Phaser.TintModes.MULTIPLY] - The tint mode to use.
-     * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the character. If not other values are given this value is applied evenly, tinting the whole character.
+     * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the character. If no other values are given this value is applied evenly, tinting the whole character.
      * @param {number} [topRight] - The tint being applied to the top-right of the character.
      * @param {number} [bottomLeft] - The tint being applied to the bottom-left of the character.
      * @param {number} [bottomRight] - The tint being applied to the bottom-right of the character.
@@ -636,7 +636,7 @@ var BitmapText = new Class({
      * If a string, it will run a string comparison against the text contents, and if matching,
      * it will tint the whole word.
      *
-     * If a number, if till that word, based on its offset within the text contents.
+     * If a number, it will tint that word, based on its index within the words array.
      *
      * The `count` parameter controls how many words are replaced. Pass in -1 to replace them all.
      *
@@ -669,7 +669,7 @@ var BitmapText = new Class({
      * @param {(string|number)} word - The word to search for. Either a string, or an index of the word in the words array.
      * @param {number} [count=1] - The number of matching words to tint. Pass -1 to tint all matching words.
      * @param {number} [tintMode=Phaser.TintModes.MULTIPLY] - The tint mode to use.
-     * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the word. If not other values are given this value is applied evenly, tinting the whole word.
+     * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the word. If no other values are given this value is applied evenly, tinting the whole word.
      * @param {number} [topRight] - The tint being applied to the top-right of the word.
      * @param {number} [bottomLeft] - The tint being applied to the bottom-left of the word.
      * @param {number} [bottomRight] - The tint being applied to the bottom-right of the word.
@@ -1067,7 +1067,7 @@ var BitmapText = new Class({
     },
 
     /**
-     * The height of this Bitmap text.
+     * The height of this Bitmap Text.
      *
      * This property is read-only.
      *

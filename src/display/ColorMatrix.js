@@ -617,7 +617,7 @@ var ColorMatrix = new Class({
     },
 
     /**
-     * Multiplies the two given matrices.
+     * Multiplies the given matrix `a` against the current `_matrix`.
      *
      * @method Phaser.Display.ColorMatrix#multiply
      * @since 3.50.0
@@ -718,7 +718,7 @@ ColorMatrix.BLACK_WHITE = [ 0.3, 0.6, 0.1, 0, 0, 0.3, 0.6, 0.1, 0, 0, 0.3, 0.6, 
 ColorMatrix.NEGATIVE = [ -1, 0, 0, 1, 0, 0, -1, 0, 1, 0, 0, 0, -1, 1, 0, 0, 0, 0, 1, 0 ];
 
 /**
- * A constant array used by the ColorMatrix class for desatured luminance operations.
+ * A constant array used by the ColorMatrix class for desaturated luminance operations.
  *
  * @name Phaser.Display.ColorMatrix.DESATURATE_LUMINANCE
  * @const

@@ -132,7 +132,10 @@ var Glow = new Class({
         this._distance = Math.max(Math.round(distance), 1);
 
         /**
-         * A 4 element array of gl color values.
+         * The internal RGBA color of the glow, stored as four normalized
+         * floating-point values (red, green, blue, alpha) in the range 0 to 1,
+         * for direct use by the WebGL renderer. To set the glow color, use the
+         * `color` property instead.
          *
          * @name Phaser.Filters.Glow#glcolor
          * @type {number[]}
@@ -147,7 +150,10 @@ var Glow = new Class({
     },
 
     /**
-     * The color of the glow as a number value.
+     * The color of the glow effect, expressed as a hex color value in the
+     * format 0xRRGGBB. Getting this value converts it from the internal
+     * normalized `glcolor` array. Setting it updates `glcolor` for use by
+     * the WebGL renderer.
      *
      * @name Phaser.Filters.Glow#color
      * @type {number}
@@ -213,6 +219,16 @@ var Glow = new Class({
         }
     },
 
+    /**
+     * Returns the amount of extra padding, in pixels, that this filter requires when rendering.
+     * The padding accounts for the glow effect extending beyond the original bounds
+     * of the Camera's rendered output.
+     *
+     * @method Phaser.Filters.Glow#getPadding
+     * @since 4.0.0
+     *
+     * @return {Phaser.Geom.Rectangle} The padding Rectangle.
+     */
     getPadding: function ()
     {
         var override = this.paddingOverride;

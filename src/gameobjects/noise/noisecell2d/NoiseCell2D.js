@@ -17,7 +17,7 @@ var NoiseWorley2DFrag = require('../../../renderer/webgl/shaders/NoiseWorley2D-f
  * You can manipulate this object like any other, make it interactive,
  * and use it in filters and masks to create visually stunning effects.
  *
- * Behind the scenes, a NoiseCell2D is a {@see Phaser.GameObjects.Shader}
+ * Behind the scenes, a NoiseCell2D is a {@link Phaser.GameObjects.Shader}
  * using a specific shader program.
  *
  * Cellular noise, also called Worley Noise or Voronoi Noise,
@@ -373,8 +373,8 @@ var NoiseCell2D = new Class({
      *
      * @method Phaser.GameObjects.NoiseCell2D#setNoiseColor
      * @since 4.0.0
-     * @param {number | string | number[] | Color} [start=0x000000] - The color in the middle of the cells.
-     * @param {number | string | number[] | Color} [end=0xffffff] - The color at the edge of the cells.
+     * @param {number | string | number[] | Phaser.Display.Color} [start=0x000000] - The color in the middle of the cells.
+     * @param {number | string | number[] | Phaser.Display.Color} [end=0xffffff] - The color at the edge of the cells.
      * @return {this} This game object.
      */
     setNoiseColor: function (start, end)

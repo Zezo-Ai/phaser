@@ -15,6 +15,11 @@ var IsPlainObject = require('../../utils/object/IsPlainObject');
  * @classdesc
  * A single HTML File suitable for loading by the Loader.
  *
+ * HTML files are loaded as raw text strings and stored in the HTML Cache. They are commonly used to supply
+ * HTML markup to `Phaser.GameObjects.DOMElement` instances, allowing you to embed DOM-based UI elements
+ * directly into your game. The loaded string can be retrieved from the cache and passed to a DOMElement's
+ * `createFromCache` method, or manipulated further before use.
+ *
  * These are created when you use the Phaser.Loader.LoaderPlugin#html method and are not typically created directly.
  *
  * For documentation about what all the arguments and configuration options mean please see Phaser.Loader.LoaderPlugin#html.
@@ -64,8 +69,8 @@ var HTMLFile = new Class({
     },
 
     /**
-     * Called automatically by Loader.nextFile.
-     * This method controls what extra work this File does with its loaded data.
+     * Called automatically by the Loader when this file has finished loading.
+     * Reads the raw HTML text from the XHR response and stores it in `this.data`, then marks the file as processed.
      *
      * @method Phaser.Loader.FileTypes.HTMLFile#onProcess
      * @since 3.7.0

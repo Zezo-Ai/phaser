@@ -10,10 +10,10 @@
  * @function Phaser.Utils.Objects.HasAny
  * @since 3.0.0
  *
- * @param {object} source - an object on which to check for key existence
- * @param {string[]} keys - an array of keys to search the object for
+ * @param {object} source - An object on which to check for key existence.
+ * @param {string[]} keys - An array of keys to search the object for.
  *
- * @return {boolean} true if the source object contains at least one of the keys, false otherwise
+ * @return {boolean} `true` if the source object contains at least one of the keys, otherwise `false`.
  */
 var HasAny = function (source, keys)
 {

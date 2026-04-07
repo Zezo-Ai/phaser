@@ -5,7 +5,7 @@
  */
 
 /**
- * Returns an object containing dimensions of the Text object.
+ * Calculates and returns the rendered dimensions of a Text object, including the width of each line, the maximum line width, the total height (accounting for line spacing), and the number of drawn lines (respecting `maxLines`).
  *
  * @function Phaser.GameObjects.GetTextSize
  * @since 3.0.0

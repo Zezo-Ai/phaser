@@ -89,7 +89,7 @@ if (typeof WEBGL_RENDERER)
         },
 
         /**
-         * Add a render step.
+         * Adds a render step function to this Game Object's WebGL render pipeline.
          *
          * The first render step in `_renderSteps` is run first.
          * It should call the next render step in the list.

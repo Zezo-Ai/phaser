@@ -12,7 +12,9 @@
  * @function Phaser.DOM.GetTarget
  * @since 3.16.0
  *
- * @param {HTMLElement} element - The DOM element to look-up.
+ * @param {HTMLElement} element - The DOM element to look-up. Can be either a string, in which case it is used as an element ID to look up via `document.getElementById`, or a direct reference to an existing HTMLElement node.
+ *
+ * @return {HTMLElement} The DOM element matching the given ID or node reference, or `document.body` if no valid target was found.
  */
 var GetTarget = function (element)
 {

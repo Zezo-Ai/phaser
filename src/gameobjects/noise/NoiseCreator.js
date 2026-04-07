@@ -12,6 +12,12 @@ var Noise = require('./Noise');
 /**
  * Creates a new Noise Game Object and returns it.
  *
+ * A Noise Game Object renders procedural noise — such as Perlin or simplex noise — directly
+ * onto a WebGL quad using a shader. It is useful for generating dynamic visual effects such
+ * as clouds, fog, terrain previews, animated backgrounds, or any effect that benefits from
+ * smooth, organic-looking randomness. The noise pattern is generated entirely on the GPU,
+ * making it very efficient to animate each frame.
+ *
  * Note: This method will only be available if the Noise Game Object and WebGL support have been built into Phaser.
  *
  * @method Phaser.GameObjects.GameObjectCreator#noise

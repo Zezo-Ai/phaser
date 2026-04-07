@@ -8,7 +8,7 @@
 var Wrap = require('../math/Wrap');
 
 /**
- * Iterates through the given array and makes sure that each objects x and y
+ * Iterates through the given array and makes sure that each object's x and y
  * properties are wrapped to keep them contained within the given Rectangle's
  * area.
  *

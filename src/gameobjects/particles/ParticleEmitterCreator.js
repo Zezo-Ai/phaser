@@ -13,6 +13,11 @@ var ParticleEmitter = require('./ParticleEmitter');
 /**
  * Creates a new Particle Emitter Game Object and returns it.
  *
+ * A Particle Emitter is a Game Object that produces a stream of particles based on a
+ * configuration object. It can be used to create effects such as explosions, fire, smoke,
+ * rain, or any other particle-based visual. The emitter is added to the Scene and managed
+ * as a standard Game Object, supporting transforms, depth, and other common properties.
+ *
  * Prior to Phaser v3.60 this function would create a `ParticleEmitterManager`. These were removed
  * in v3.60 and replaced with creating a `ParticleEmitter` instance directly. Please see the
  * updated function parameters and class documentation for more details.

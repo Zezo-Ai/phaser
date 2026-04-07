@@ -13,10 +13,10 @@ var IntegerToRGB = require('./IntegerToRGB');
  * @function Phaser.Display.Color.IntegerToColor
  * @since 3.0.0
  *
- * @param {number} input - The color value to convert into a Color object.
- * @param {Phaser.Display.Color} [color] - The color where the new color will be stored. If not defined, a new color object is returned.
+ * @param {number} input - The 32-bit integer color value to convert, such as a hex value like `0xff0000` for red.
+ * @param {Phaser.Display.Color} [color] - An optional Color object to store the result in. If not provided, a new Color object is created and returned.
  *
- * @return {Phaser.Display.Color} A Color object.
+ * @return {Phaser.Display.Color} A Color object containing the red, green, blue, and alpha components extracted from the given integer.
  */
 var IntegerToColor = function (input, color)
 {

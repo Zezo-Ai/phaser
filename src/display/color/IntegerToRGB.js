@@ -7,14 +7,15 @@
 /**
  * Return the component parts of a color as an Object with the properties alpha, red, green, blue.
  *
- * Alpha will only be set if it exists in the given color (0xAARRGGBB)
+ * If the color value includes an alpha component (0xAARRGGBB), it is extracted and set in the `a` property.
+ * Otherwise, alpha defaults to 255 (fully opaque).
  *
  * @function Phaser.Display.Color.IntegerToRGB
  * @since 3.0.0
  *
- * @param {number} input - The color value to convert into a Color object.
+ * @param {number} color - The color value to convert into a Color object.
  *
- * @return {Phaser.Types.Display.ColorObject} An object with the red, green and blue values set in the r, g and b properties.
+ * @return {Phaser.Types.Display.ColorObject} An object with the alpha, red, green, and blue values set in the a, r, g, and b properties.
  */
 var IntegerToRGB = function (color)
 {

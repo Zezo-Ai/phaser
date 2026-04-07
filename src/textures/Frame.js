@@ -10,7 +10,11 @@ var Extend = require('../utils/object/Extend');
 
 /**
  * @classdesc
- * A Frame is a section of a Texture.
+ * A Frame is a section of a Texture. It defines a rectangular sub-region within a
+ * Texture Source, storing its position, dimensions, UV coordinates, and optional trim
+ * data (for packed atlas frames with whitespace removed). Frames are the primary unit
+ * of texture addressing used by Game Objects -- when a Sprite displays a particular
+ * image, it references a Frame.
  *
  * @class Frame
  * @memberof Phaser.Textures
@@ -213,7 +217,7 @@ var Frame = new Class({
         /**
          * **CURRENTLY UNSUPPORTED**
          *
-         * Is this frame is rotated or not in the Texture?
+         * Is this frame rotated or not in the Texture?
          * Rotation allows you to use rotated frames in texture atlas packing.
          * It has nothing to do with Sprite rotation.
          *
@@ -225,7 +229,7 @@ var Frame = new Class({
         this.rotated = false;
 
         /**
-         * Over-rides the Renderer setting.
+         * Overrides the Renderer setting.
          * -1 = use Renderer Setting
          * 0 = No rounding
          * 1 = Round
@@ -359,7 +363,7 @@ var Frame = new Class({
     },
 
     /**
-     * Sets the width, and height of the area in the source image to cut.
+     * Sets the width and height of the area in the source image to cut.
      *
      * @method Phaser.Textures.Frame#setCutSize
      * @since 3.85.0
@@ -501,7 +505,7 @@ var Frame = new Class({
      * @param {number} x - The left coordinate of the center scale9 rectangle.
      * @param {number} y - The top coordinate of the center scale9 rectangle.
      * @param {number} width - The width of the center scale9 rectangle.
-     * @param {number} height - The height coordinate of the center scale9 rectangle.
+     * @param {number} height - The height of the center scale9 rectangle.
      *
      * @return {this} This Frame object.
      */
@@ -756,7 +760,9 @@ var Frame = new Class({
     },
 
     /**
-     * Updates the internal WebGL UV cache.
+     * Updates the internal WebGL UV cache for a rotated frame, swapping the width and height
+     * axes so that the UV coordinates map correctly to a frame that has been rotated 90 degrees
+     * in the texture atlas.
      *
      * @method Phaser.Textures.Frame#updateUVsInverted
      * @since 3.0.0

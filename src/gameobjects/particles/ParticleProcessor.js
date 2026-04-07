@@ -39,7 +39,7 @@ var ParticleProcessor = new Class({
          * This is set automatically when the Processor is added to an Emitter
          * and nulled when removed or destroyed.
          *
-         * @name Phaser.GameObjects.Particles.ParticleProcessor#manager
+         * @name Phaser.GameObjects.Particles.ParticleProcessor#emitter
          * @type {Phaser.GameObjects.Particles.ParticleEmitter}
          * @since 3.60.0
          */

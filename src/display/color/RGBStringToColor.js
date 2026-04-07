@@ -15,9 +15,9 @@ var Color = require('./Color');
  * @since 3.0.0
  *
  * @param {string} rgb - The CSS format color string, using the `rgb` or `rgba` format.
- * @param {Phaser.Display.Color} [color] - The color where the new color will be stored. If not defined, a new color object is returned.
+ * @param {Phaser.Display.Color} [color] - An optional Color object to populate with the parsed values. If not provided, a new Color object is created and returned.
  *
- * @return {Phaser.Display.Color} A Color object.
+ * @return {Phaser.Display.Color} The Color object populated with the parsed RGB or RGBA values.
  */
 var RGBStringToColor = function (rgb, color)
 {

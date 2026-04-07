@@ -7,7 +7,7 @@
 var CanvasPool = require('../../display/canvas/CanvasPool');
 
 /**
- * Calculates the ascent, descent and fontSize of a given font style.
+ * Calculates the ascent, descent, and fontSize metrics for a given TextStyle by rendering text to a temporary offscreen canvas and measuring the pixel boundaries. It uses the `actualBoundingBoxAscent`/`actualBoundingBoxDescent` API where available, falling back to a pixel-scanning approach for older browsers.
  *
  * @function Phaser.GameObjects.MeasureText
  * @since 3.0.0

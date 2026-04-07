@@ -47,8 +47,9 @@ var ColorMatrix = new Class({
         Controller.call(this, camera, 'FilterColorMatrix');
 
         /**
-         * The color matrix for this effect.
-         * This is where the color values are managed and set.
+         * The color matrix instance for this effect. Use this to apply
+         * preset or custom color transformations such as sepia, grayscale,
+         * saturation, brightness, hue rotation, and more.
          *
          * @name Phaser.Filters.ColorMatrix#colorMatrix
          * @type {Phaser.Display.ColorMatrix}
@@ -57,6 +58,12 @@ var ColorMatrix = new Class({
         this.colorMatrix = new DisplayColorMatrix();
     },
 
+    /**
+     * Destroys this filter, releasing all references and resources.
+     *
+     * @method Phaser.Filters.ColorMatrix#destroy
+     * @since 4.0.0
+     */
     destroy: function ()
     {
         this.colorMatrix = null;

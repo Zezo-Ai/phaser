@@ -81,11 +81,9 @@ var Vertex = require('./NineSliceVertex');
  * together and can co-exist with other Sprites and graphics on the display
  * list, without incurring any additional overhead.
  *
- * As of Phaser 3.60 this Game Object is WebGL only.
- *
- * As of Phaser 3.70 this Game Object can now populate its values automatically
+ * This Game Object can now populate its values automatically
  * if they have been set within Texture Packer 7.1.0 or above and exported with
- * the atlas json. If this is the case, you can just call this method without
+ * the atlas json. If this is the case, you can just create this Game Object without
  * specifying anything more than the texture key and frame and it will pull the
  * area data from the atlas.
  *
@@ -423,7 +421,7 @@ var NineSlice = new Class({
      * @param {number} [rightWidth=10] - The size of the right vertical column (B).
      * @param {number} [topHeight=0] - The size of the top horizontal row (C). Set to zero or undefined to create a 3 slice object.
      * @param {number} [bottomHeight=0] - The size of the bottom horizontal row (D). Set to zero or undefined to create a 3 slice object.
-     * @param {boolean} [skipScale9=false] -If this Nine Slice was created from Texture Packer scale9 atlas data, set this property to use the given column sizes instead of those specified in the JSON.
+     * @param {boolean} [skipScale9=false] - If this Nine Slice was created from Texture Packer scale9 atlas data, set this property to use the given column sizes instead of those specified in the JSON.
      *
      * @return {this} This Game Object instance.
      */
@@ -507,7 +505,7 @@ var NineSlice = new Class({
      * Updates all of the vertex UV coordinates. This is called automatically
      * when the NineSlice Game Object is created, or if the texture frame changes.
      *
-     * Unlike with the `updateVertex` method, you do not need to call this
+     * Unlike with the `updateVertices` method, you do not need to call this
      * method if the Nine Slice changes size. Only if it changes texture frame.
      *
      * @method Phaser.GameObjects.NineSlice#updateUVs
@@ -766,10 +764,10 @@ var NineSlice = new Class({
      * @since 3.60.0
      *
      * @param {number} offset - The offset in the vertices array of the quad to update.
-     * @param {number} x1 - The top-left quad coordinate.
-     * @param {number} y1 - The top-left quad coordinate.
-     * @param {number} x2 - The bottom-right quad coordinate.
-     * @param {number} y2 - The bottom-right quad coordinate.
+     * @param {number} x1 - The top-left X coordinate of the quad, in normalized space (-0.5 to 0.5).
+     * @param {number} y1 - The top-left Y coordinate of the quad, in normalized space (-0.5 to 0.5).
+     * @param {number} x2 - The bottom-right X coordinate of the quad, in normalized space (-0.5 to 0.5).
+     * @param {number} y2 - The bottom-right Y coordinate of the quad, in normalized space (-0.5 to 0.5).
      */
     updateQuad: function (offset, x1, y1, x2, y2)
     {
@@ -799,10 +797,10 @@ var NineSlice = new Class({
      * @since 3.60.0
      *
      * @param {number} offset - The offset in the vertices array of the quad to update.
-     * @param {number} u1 - The top-left UV coordinate.
-     * @param {number} v1 - The top-left UV coordinate.
-     * @param {number} u2 - The bottom-right UV coordinate.
-     * @param {number} v2 - The bottom-right UV coordinate.
+     * @param {number} u1 - The top-left U coordinate of the quad, in the range 0 to 1.
+     * @param {number} v1 - The top-left V coordinate of the quad, in the range 0 to 1.
+     * @param {number} u2 - The bottom-right U coordinate of the quad, in the range 0 to 1.
+     * @param {number} v2 - The bottom-right V coordinate of the quad, in the range 0 to 1.
      */
     updateQuadUVs: function (offset, u1, v1, u2, v2)
     {
@@ -1194,10 +1192,12 @@ var NineSlice = new Class({
     },
 
     /**
-     * This method is included but does nothing for the Nine Slice Game Object,
-     * because the size of the object isn't based on the texture frame.
+     * Resets the size of this Nine Slice Game Object to match the current texture frame.
      *
-     * You should not call this method.
+     * For a 3-slice object, this sets the height to match the frame height and refreshes
+     * the UV coordinates. For a 9-slice object, only the UVs are refreshed. This is called
+     * automatically when the texture frame changes and should not normally need to be
+     * called directly.
      *
      * @method Phaser.GameObjects.NineSlice#setSizeToFrame
      * @since 3.60.0

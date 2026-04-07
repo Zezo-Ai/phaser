@@ -15,7 +15,7 @@ var Device = require('../../device');
  * @param {*} a - The first item to test.
  * @param {*} b - The second item to test.
  *
- * @return {boolean} True if they localCompare, otherwise false.
+ * @return {boolean} The numeric result of the locale comparison between the two string values.
  */
 function Compare (a, b)
 {
@@ -68,7 +68,7 @@ function Process (array, compare)
  *
  * @param {array} arr - The array to run the pass on.
  * @param {function} comp - The comparison function.
- * @param {number} chk - The number of iterations.
+ * @param {number} chk - The chunk size for this pass, i.e. the size of each partition being merged.
  * @param {array} result - The array to store the result in.
  */
 function RunPass (arr, comp, chk, result)

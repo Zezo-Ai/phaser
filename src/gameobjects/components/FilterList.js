@@ -379,7 +379,7 @@ var FilterList = new Class({
      * @method Phaser.GameObjects.Components.FilterList#addCombineColorMatrix
      * @since 4.0.0
      * @param {string | Phaser.Textures.Texture} [texture='__WHITE'] - The texture or texture key to use for the transfer texture.
-     * @returns
+     * @return {Phaser.Filters.CombineColorMatrix} The new CombineColorMatrix filter controller.
      */
     addCombineColorMatrix: function (texture)
     {
@@ -464,7 +464,7 @@ var FilterList = new Class({
      *
      * @param {Phaser.Types.Filters.GradientMapConfig} [config] - The configuration object for the GradientMap effect.
      *
-     * @return {Phaser.Filters.GradientMap}
+     * @return {Phaser.Filters.GradientMap} The new GradientMap filter controller.
      */
     addGradientMap: function (config)
     {
@@ -498,7 +498,7 @@ var FilterList = new Class({
      * @method Phaser.GameObjects.Components.FilterList#addImageLight
      * @since 4.0.0
      *
-     * @param {Phaser.Types.Filters.ImageLightConfig} config
+     * @param {Phaser.Types.Filters.ImageLightConfig} config - The configuration object for the ImageLight effect.
      * @return {Phaser.Filters.ImageLight} The new ImageLight filter controller.
      */
     addImageLight: function (config)
@@ -616,7 +616,7 @@ var FilterList = new Class({
      * @method Phaser.GameObjects.Components.FilterList#addNormalTools
      * @since 4.0.0
      *
-     * @param {Phaser.Types.Filters.NormalToolsConfig} config
+     * @param {Phaser.Types.Filters.NormalToolsConfig} config - The configuration object for the NormalTools effect.
      * @return {Phaser.Filters.NormalTools} The new NormalTools filter controller.
      */
     addNormalTools: function (config)
@@ -705,7 +705,7 @@ var FilterList = new Class({
      * @method Phaser.GameObjects.Components.FilterList#addQuantize
      * @since 4.0.0
      *
-     * @param {Phaser.Types.Filters.QuantizeConfig} [config] - The configuration object for the GradientMap effect.
+     * @param {Phaser.Types.Filters.QuantizeConfig} [config] - The configuration object for the Quantize effect.
      *
      * @return {this} The new Quantize filter controller.
      */
@@ -865,7 +865,7 @@ var FilterList = new Class({
      * @param {number} [radius=0.5] - The radius of the vignette effect. This value is normalized to the range 0 to 1.
      * @param {number} [strength=0.5] - The strength of the vignette effect.
      * @param {number | string | Phaser.Types.Display.InputColorObject | Phaser.Display.Color} [color=0x000000] - The color of the vignette effect, as a hex code or Color object.
-     * @param {number} [blendMode=Phaser.BlendModes.NORMAL] - the blend mode to use with the vignette. Only NORMAL, ADD, MULTIPLY, and SCREEN are supported.
+     * @param {number} [blendMode=Phaser.BlendModes.NORMAL] - The blend mode to use with the vignette. Only NORMAL, ADD, MULTIPLY, and SCREEN are supported.
      *
      * @return {Phaser.Filters.Vignette} The new Vignette filter controller.
      */
@@ -886,8 +886,8 @@ var FilterList = new Class({
      *
      * * left to right: direction 0, axis 0
      * * right to left: direction 1, axis 0
-     * * top to bottom: direction 1, axis 1
-     * * bottom to top: direction 1, axis 0
+     * * top to bottom: direction 0, axis 1
+     * * bottom to top: direction 1, axis 1
      *
      * It is up to you to set the `progress` value yourself, e.g. via a Tween, in order to transition the effect.
      *

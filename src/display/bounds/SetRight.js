@@ -5,7 +5,7 @@
  */
 
 /**
- * Positions the Game Object so that the left of its bounds aligns with the given coordinate.
+ * Positions the Game Object so that the right of its bounds aligns with the given coordinate.
  *
  * @function Phaser.Display.Bounds.SetRight
  * @since 3.0.0

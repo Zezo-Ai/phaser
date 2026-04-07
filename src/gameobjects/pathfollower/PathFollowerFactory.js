@@ -10,6 +10,12 @@ var PathFollower = require('./PathFollower');
 /**
  * Creates a new PathFollower Game Object and adds it to the Scene.
  *
+ * A PathFollower is a Sprite that is bound to a Phaser.Curves.Path and can automatically move along
+ * that path over time. It is useful for animating characters or objects along predetermined routes,
+ * such as enemies patrolling a level, vehicles following a road, or any game object that needs to
+ * travel a curved or multi-segment course. The follower exposes controls to start, stop, pause, and
+ * resume movement, as well as options for looping and rotation along the path.
+ *
  * Note: This method will only be available if the PathFollower Game Object has been built into Phaser.
  *
  * @method Phaser.GameObjects.GameObjectFactory#follower

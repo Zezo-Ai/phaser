@@ -10,6 +10,11 @@ var GameObjectFactory = require('../GameObjectFactory');
 /**
  * Creates a new Shader Game Object and adds it to the Scene.
  *
+ * A Shader Game Object renders a custom GLSL fragment shader as a rectangular Game Object, allowing you to
+ * display procedural visual effects, generative graphics, or post-processing-style visuals directly within
+ * your game world. The shader runs on the GPU and can receive custom uniforms as well as up to four texture
+ * channel inputs (iChannel0 to iChannel3), making it compatible with shaders written in the Shadertoy style.
+ *
  * Note: This method will only be available if the Shader Game Object and WebGL support have been built into Phaser.
  *
  * @method Phaser.GameObjects.GameObjectFactory#shader

@@ -44,7 +44,7 @@ var Color = require('../display/color/Color');
  * @param {number} [radius=0.5] - The radius of the vignette effect. This value is normalized to the range 0 to 1.
  * @param {number} [strength=0.5] - The strength of the vignette effect.
  * @param {number | string | Phaser.Types.Display.InputColorObject | Phaser.Display.Color} [color=0x000000] - The color of the vignette effect, as a hex code or Color object.
- * @param {number} [blendMode=Phaser.BlendModes.NORMAL] - the blend mode to use with the vignette. Only NORMAL, ADD, MULTIPLY, and SCREEN are supported.
+ * @param {number} [blendMode=Phaser.BlendModes.NORMAL] - The blend mode to use with the vignette. Only NORMAL, ADD, MULTIPLY, and SCREEN are supported.
  */
 var Vignette = new Class({
 
@@ -89,7 +89,9 @@ var Vignette = new Class({
         this.radius = radius;
 
         /**
-         * The strength of the vignette effect.
+         * The strength of the vignette effect. Higher values produce a more
+         * intense, opaque vignette overlay at the edges, while lower values
+         * produce a subtler, more transparent effect.
          *
          * @name Phaser.Filters.Vignette#strength
          * @type {number}
@@ -121,7 +123,7 @@ var Vignette = new Class({
     },
 
     /**
-     * Set the color used by the vignette border.
+     * Sets the color of the vignette overlay.
      *
      * @method Phaser.Filters.Vignette#setColor
      * @since 4.0.0

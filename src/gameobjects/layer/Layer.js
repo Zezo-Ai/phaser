@@ -289,7 +289,7 @@ var Layer = new Class({
         this.events = scene.sys.events;
 
         /**
-         * The flag the determines whether Game Objects should be sorted when `depthSort()` is called.
+         * The flag that determines whether Game Objects should be sorted when `depthSort()` is called.
          *
          * @name Phaser.GameObjects.Layer#sortChildrenFlag
          * @type {boolean}
@@ -609,7 +609,7 @@ var Layer = new Class({
     /**
      * This callback is invoked when this Game Object is added to a Scene.
      *
-     * Can be overriden by custom Game Objects, but be aware of some Game Objects that
+     * Can be overridden by custom Game Objects, but be aware of some Game Objects that
      * will use this, such as Sprites, to add themselves into the Update List.
      *
      * You can also listen for the `ADDED_TO_SCENE` event from this Game Object.
@@ -624,8 +624,8 @@ var Layer = new Class({
     /**
      * This callback is invoked when this Game Object is removed from a Scene.
      *
-     * Can be overriden by custom Game Objects, but be aware of some Game Objects that
-     * will use this, such as Sprites, to removed themselves from the Update List.
+     * Can be overridden by custom Game Objects, but be aware of some Game Objects that
+     * will use this, such as Sprites, to remove themselves from the Update List.
      *
      * You can also listen for the `REMOVED_FROM_SCENE` event from this Game Object.
      *
@@ -885,7 +885,7 @@ var Layer = new Class({
     /**
      * Removes this Layer from the Display List it is currently on.
      *
-     * A Layer can only exist on one Display List at any given time, but may move freely removed
+     * A Layer can only exist on one Display List at any given time, but may be freely removed
      * and added back at a later stage.
      *
      * You can query which list it is on by looking at the `Phaser.GameObjects.GameObject#displayList` property.

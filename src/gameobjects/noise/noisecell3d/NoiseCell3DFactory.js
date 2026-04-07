@@ -16,7 +16,7 @@ var GameObjectFactory = require('../../GameObjectFactory');
  * @webglOnly
  * @since 4.0.0
  *
- * @param {(string|Phaser.Types.GameObjects.NoiseCell3D.NoiseCell3DQuadConfig)} [config] - The configuration object this NoiseCell3D will use. This defines the shape and appearance of the noisecell3d texture.
+ * @param {(string|Phaser.Types.GameObjects.NoiseCell3D.NoiseCell3DQuadConfig)} [config] - The configuration object this NoiseCell3D will use. This defines the shape and appearance of the NoiseCell3D texture.
  * @param {number} [x=0] - The horizontal position of this Game Object in the world.
  * @param {number} [y=0] - The vertical position of this Game Object in the world.
  * @param {number} [width=128] - The width of the Game Object.

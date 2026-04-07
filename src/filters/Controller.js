@@ -9,9 +9,13 @@ var Rectangle = require('../geom/rectangle/Rectangle');
 
 /**
  * @classdesc
- * The Controller for a filter effect.
+ * The base class for a post-processing filter effect applied to a Camera.
  *
- * You should not normally create an instance of this class directly, but instead use one of the built-in filters that extend it.
+ * Filters are visual effects rendered on top of a Camera's output, such as blur, glow, or color grading.
+ * Each filter is managed by a Controller, which holds its configuration and provides padding information to the renderer.
+ *
+ * You should not normally create an instance of this class directly, but instead use one of the built-in filters that extend it,
+ * such as those found in the `Phaser.Filters` namespace.
  *
  * You should not use a Controller for more than one Camera.
  * Create a new instance for each Camera that you wish to apply the filter to.
@@ -29,7 +33,7 @@ var Controller = new Class({
     {
         /**
          * Toggle this boolean to enable or disable this filter,
-         * without removing and adding it from the Game Object.
+         * without removing it from and re-adding it to the Camera's filter list.
          *
          * @name Phaser.Filters.Controller#active
          * @type {boolean}
@@ -68,7 +72,7 @@ var Controller = new Class({
 
         /**
          * The padding currently being used by this filter.
-         * This is set and used during rendering using `getPadding`.
+         * This is read during rendering via `getPadding`, and may be updated by subclass implementations.
          * It is necessary for filters being used in an external list.
          * You should not modify this value directly.
          *
@@ -111,10 +115,9 @@ var Controller = new Class({
     },
 
     /**
-     * Returns the padding required for this filter,
-     * and sets `currentPadding` to the result.
+     * Returns the padding required for this filter.
      * Most filters don't need extra padding,
-     * but some might sample beyond the texture size, such as a blur.
+     * but some may sample beyond the texture boundaries, such as a blur or glow effect.
      *
      * The bounds are encoded as a Rectangle.
      * To enlarge the bounds, the top and left values should be negative,
@@ -131,8 +134,8 @@ var Controller = new Class({
 
     /**
      * Sets the padding override.
-     * If this is set, the filter will use this padding instead of calculating them.
-     *it Call `setPaddingOverride(null)` to clear the override.
+     * If this is set, the filter will use this padding instead of calculating it.
+     * Call `setPaddingOverride(null)` to clear the override.
      * Call `setPaddingOverride()` to set the padding to 0.
      *
      * @method Phaser.Filters.Controller#setPaddingOverride

@@ -7,7 +7,7 @@
 var INPUT_CONST = {
 
     /**
-     * The mouse pointer is being held down.
+     * The mouse pointer button has been pressed down.
      *
      * @name Phaser.Input.MOUSE_DOWN
      * @type {number}
@@ -79,7 +79,7 @@ var INPUT_CONST = {
     TOUCH_CANCEL: 7,
 
     /**
-     * The mouse wheel changes.
+     * The mouse wheel has changed.
      *
      * @name Phaser.Input.MOUSE_WHEEL
      * @type {number}

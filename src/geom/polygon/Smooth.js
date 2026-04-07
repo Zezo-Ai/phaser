@@ -19,6 +19,14 @@ var copy = function (out, a)
 /**
  * Takes a Polygon object and applies Chaikin's smoothing algorithm on its points.
  *
+ * Chaikin's algorithm is a corner-cutting technique that replaces each edge between
+ * two consecutive points with two new points positioned along that edge, resulting in
+ * a smoother curve. Each iteration of the algorithm increases the total number of points
+ * in the polygon. The original first and last points are preserved, while all intermediate
+ * points are replaced by pairs of new points at 85% and 15% along each edge.
+ *
+ * The polygon is modified in-place and the same polygon object is returned.
+ *
  * @function Phaser.Geom.Polygon.Smooth
  * @since 3.13.0
  *

@@ -80,7 +80,7 @@ var Tint = {
      * In Phaser 4 they are separate settings.
      *
      * @name Phaser.GameObjects.Components.Tint#tintMode
-     * @type {number}
+     * @type {Phaser.TintModes}
      * @default Phaser.TintModes.MULTIPLY
      * @since 4.0.0
      */
@@ -166,7 +166,7 @@ var Tint = {
      * @webglOnly
      * @since 4.0.0
      *
-     * @param {number} mode - The tint mode to use.
+     * @param {number | Phaser.TintModes} mode - The tint mode to use.
      * @return {this} This Game Object instance.
      */
     setTintMode: function (mode)
@@ -193,7 +193,9 @@ var Tint = {
 
     /**
      * The tint value being applied to the whole of the Game Object.
-     * Return `tintTopLeft` when read this tint property.
+     * Returns the value of `tintTopLeft` when read. When written, the same
+     * color value is applied to all four corner tint properties (`tintTopLeft`,
+     * `tintTopRight`, `tintBottomLeft`, and `tintBottomRight`) simultaneously.
      *
      * @name Phaser.GameObjects.Components.Tint#tint
      * @type {number}
@@ -216,9 +218,10 @@ var Tint = {
     /**
      * Does this Game Object have a tint applied?
      *
-     * It checks to see if the 4 tint properties are set to the value 0xffffff
-     * and that the `tintMode` property is `MULTIPLY`.
-     * This indicates that a Game Object isn't tinted.
+     * Returns `true` if any of the four corner tint values differ from 0xffffff,
+     * or if the `tintMode` property is set to anything other than `MULTIPLY`.
+     * Returns `false` when all four tint values are 0xffffff and the tint mode
+     * is `MULTIPLY`, which is the default untinted state.
      *
      * @name Phaser.GameObjects.Components.Tint#isTinted
      * @type {boolean}

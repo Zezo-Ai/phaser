@@ -19,8 +19,8 @@ var GameObjectFactory = require('../GameObjectFactory');
  * @param {(string|Phaser.Types.GameObjects.Noise.NoiseQuadConfig)} [config] - The configuration object this Noise will use. This defines the shape and appearance of the noise texture.
  * @param {number} [x=0] - The horizontal position of this Game Object in the world.
  * @param {number} [y=0] - The vertical position of this Game Object in the world.
- * @param {number} [width=128] - The width of the Game Object.
- * @param {number} [height=128] - The height of the Game Object.
+ * @param {number} [width=128] - The width of the Game Object, in pixels.
+ * @param {number} [height=128] - The height of the Game Object, in pixels.
  *
  * @return {Phaser.GameObjects.Noise} The Game Object that was created.
  */

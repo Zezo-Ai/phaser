@@ -13,6 +13,11 @@ var Rope = require('./Rope');
 /**
  * Creates a new Rope Game Object and returns it.
  *
+ * A Rope is a WebGL-only Game Object that renders a strip of textured triangles along a series of points.
+ * This makes it ideal for creating rope, ribbon, cloth, or other flexible strip-like visual effects.
+ * The points define the spine of the rope, and the texture is stretched and mapped across the resulting mesh.
+ * Per-vertex colors and alpha values can be set to create gradient or fade effects along the length of the rope.
+ *
  * Note: This method will only be available if the Rope Game Object and WebGL support have been built into Phaser.
  *
  * @method Phaser.GameObjects.GameObjectCreator#rope

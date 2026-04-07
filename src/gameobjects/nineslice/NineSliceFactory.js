@@ -32,7 +32,7 @@ var GameObjectFactory = require('../GameObjectFactory');
  *    +---+----------------------+---+
  * ```
  *
- * When changing this objects width and / or height:
+ * When changing this object's width and / or height:
  *
  *     areas 1, 3, 7 and 9 (the corners) will remain unscaled
  *     areas 2 and 8 will be stretched horizontally only
@@ -53,7 +53,7 @@ var GameObjectFactory = require('../GameObjectFactory');
  *    +---+----------------------+---+
  * ```
  *
- * When changing this objects width (you cannot change its height)
+ * When changing this object's width (you cannot change its height)
  *
  *     areas 1 and 3 will remain unscaled
  *     area 2 will be stretched horizontally

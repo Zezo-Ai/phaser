@@ -19,13 +19,20 @@ var Vector2 = require('../../math/Vector2');
  *
  * The Rope object is WebGL only and does not have a Canvas counterpart.
  *
- * A Rope is a special kind of Game Object that has a texture is stretched along its entire length.
+ * A Rope is a special kind of Game Object that has a texture that is stretched along its entire length,
+ * mapped across a series of vertices that you define. This makes it ideal for creating effects such as
+ * flags waving in the wind, banners, cloth, chains, wavy water surfaces, or any shape that needs a
+ * texture bent or deformed along a path.
  *
  * Unlike a Sprite, it isn't restricted to using just a quad and can have as many vertices as you define
  * when creating it. The vertices can be arranged in a horizontal or vertical strip and have their own
- * color and alpha values as well.
+ * color and alpha values as well. You can modify the vertex positions each frame to animate the shape
+ * of the Rope in real-time.
  *
- * A Ropes origin is always 0.5 x 0.5 and cannot be changed.
+ * The Rope also supports animations via the `anims` property, allowing you to play frame-based
+ * animations from a texture atlas across the surface of the Rope.
+ *
+ * A Rope's origin is always 0.5 x 0.5 and cannot be changed.
  *
  * This object does not support trimmed textures from Texture Packer.
  * Trimming may interfere with the vertex arrangement.
@@ -314,13 +321,25 @@ var Rope = new Class({
         }
     },
 
-    //  Overrides Game Object method
+    /**
+     * Called automatically by Phaser when this Game Object is added to a Scene.
+     * Registers this Rope with the Scene's update list so that `preUpdate` is called each frame.
+     *
+     * @method Phaser.GameObjects.Rope#addedToScene
+     * @since 3.23.0
+     */
     addedToScene: function ()
     {
         this.scene.sys.updateList.add(this);
     },
 
-    //  Overrides Game Object method
+    /**
+     * Called automatically by Phaser when this Game Object is removed from a Scene.
+     * Removes this Rope from the Scene's update list so that `preUpdate` is no longer called each frame.
+     *
+     * @method Phaser.GameObjects.Rope#removedFromScene
+     * @since 3.23.0
+     */
     removedFromScene: function ()
     {
         this.scene.sys.updateList.remove(this);
@@ -389,7 +408,7 @@ var Rope = new Class({
      * Sets the alignment of the points in this Rope to be horizontal, in a strip format.
      *
      * Calling this method will reset this Rope. The current points, vertices, colors and alpha
-     * values will be reset to thoes values given as parameters.
+     * values will be reset to those values given as parameters.
      *
      * @method Phaser.GameObjects.Rope#setHorizontal
      * @since 3.23.0
@@ -418,7 +437,7 @@ var Rope = new Class({
      * Sets the alignment of the points in this Rope to be vertical, in a column format.
      *
      * Calling this method will reset this Rope. The current points, vertices, colors and alpha
-     * values will be reset to thoes values given as parameters.
+     * values will be reset to those values given as parameters.
      *
      * @method Phaser.GameObjects.Rope#setVertical
      * @since 3.23.0
@@ -479,7 +498,7 @@ var Rope = new Class({
      * You can provide the values in a number of ways:
      *
      * 1) One single numeric value: `setAlphas(0.5)` - This will set a single alpha for the whole Rope.
-     * 2) Two numeric value: `setAlphas(1, 0.5)` - This will set a 'top' and 'bottom' alpha value across the whole Rope.
+     * 2) Two numeric values: `setAlphas(1, 0.5)` - This will set a 'top' and 'bottom' alpha value across the whole Rope.
      * 3) An array of values: `setAlphas([ 1, 0.5, 0.2 ])`
      *
      * If you provide an array of values and the array has exactly the same number of values as `points` in the Rope, it

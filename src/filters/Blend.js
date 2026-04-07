@@ -48,7 +48,7 @@ var Blend = new Class({
         Controller.call(this, camera, 'FilterBlend');
 
         /**
-         * The underlying texture used for the mask.
+         * The underlying texture used for the blend.
          *
          * @name Phaser.Filters.Blend#glTexture
          * @type {Phaser.Renderer.WebGL.Wrappers.WebGLTextureWrapper}

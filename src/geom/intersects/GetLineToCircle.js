@@ -10,7 +10,7 @@ var LineToCircle = require('./LineToCircle');
 
 /**
  * Checks for intersection between the line segment and circle,
- * and returns the intersection points as a Point object array.
+ * and returns the intersection points as a Vector2 object array.
  *
  * @function Phaser.Geom.Intersects.GetLineToCircle
  * @since 3.0.0
