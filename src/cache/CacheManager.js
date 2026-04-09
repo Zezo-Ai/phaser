@@ -197,6 +197,7 @@ var CacheManager = new Class({
     destroy: function ()
     {
         var keys = [
+            'atlas',
             'binary',
             'bitmapFont',
             'json',

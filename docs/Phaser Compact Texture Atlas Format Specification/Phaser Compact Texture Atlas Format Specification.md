@@ -10,7 +10,7 @@ This document describes the data file structure in full, providing everything ne
 
 ## Overview
 
-A `.pct` file is a plain UTF-8 text file. Each line is a record. Lines are parsed top to bottom in a single pass. There are seven record types, each identified by a prefix character or pattern:
+A `.pct` file is a plain UTF-8 text file. Each line is a record. Lines are parsed top to bottom in a single pass. There are eight record types, each identified by a prefix character or pattern:
 
 | Prefix | Record type | Purpose |
 |--------|------------|---------|
@@ -23,7 +23,7 @@ A `.pct` file is a plain UTF-8 text file. Each line is a record. Lines are parse
 | `name\|` | Individual frame | A single sprite with explicit position |
 | `names,...` | Block names | Comma-separated names for the preceding block |
 
-Records must appear in this order: the `PCT:` version header on line 1, then all `P:` headers, then all `F:` entries, then frame data (which may contain `#`, `B:`, individual frames, block names, and `A:` records interleaved).
+Records must appear in this order: the `PCT:` version header on line 1, then all `P:` headers, then all `F:` entries, then frame data (which may contain `#`, `B:`, block names, and individual frame lines interleaved), followed finally by any `A:` alias records. Aliases are listed last because they reference frames by name and the loader resolves them by copying from entries that must already exist.
 
 ---
 
@@ -203,16 +203,17 @@ Fields (separated by `|`):
 | 0 | name | Sprite name (may include folder index and extension index) |
 | 1 | flags | Bit flags: bit 0 = rotated, bit 1 = trimmed |
 | 2 | x,y,w,h | Frame rectangle in the atlas |
-| 3 | sw,sh | Source size (only if trimmed) |
-| 4 | sx,sy | Trim offset within source (only if trimmed) |
+| 3 | sw,sh,sx,sy | Source size and trim offset within source (only if trimmed) |
+
+When present, segment 3 packs all four trim values into a single comma-separated field, mirroring the layout used by the `|`-separated trim block in the `B:` block header. Trimmed individual frames therefore have exactly four `|`-separated segments total; untrimmed individual frames have three.
 
 For untrimmed frames (flags bit 1 = 0):
-- `sourceSize` = `{ w: frameW, h: frameH }`
-- `spriteSourceSize` = `{ x: 0, y: 0, w: frameW, h: frameH }`
+- `sourceSize` = `{ w: w, h: h }`
+- `spriteSourceSize` = `{ x: 0, y: 0, w: w, h: h }`
 
 For trimmed frames (flags bit 1 = 1):
 - `sourceSize` = `{ w: sw, h: sh }`
-- `spriteSourceSize` = `{ x: sx, y: sy, w: frameW, h: frameH }`
+- `spriteSourceSize` = `{ x: sx, y: sy, w: w, h: h }`
 
 The rotation flag (bit 0) is reserved for future use. Currently all frames are packed without rotation.
 
@@ -354,6 +355,44 @@ function decodePCT(text):
     for line in lines:
         if line is empty: continue
         
+        // A pending block ALWAYS consumes the next non-empty line as its names
+        // line, regardless of what prefix character that line happens to start
+        // with. This must be checked before any prefix-based dispatch below.
+        if pendingBlock is not null:
+            // This line is the names for the pending block
+            block = pendingBlock
+            pendingBlock = null
+            padding = pages[block.page].padding
+            cellW = block.frameW + padding * 2
+            cellH = block.frameH + padding * 2
+            names = expandNames(line, folders, EXT)
+            
+            for i, name in enumerate(names):
+                col = i % block.cols
+                row = floor(i / block.cols)
+                frame = {
+                    key: name,
+                    page: block.page,
+                    x: block.x + col * cellW + padding,
+                    y: block.y + row * cellH + padding,
+                    w: block.frameW,
+                    h: block.frameH,
+                    trimmed: block.trimmed,
+                    rotated: false
+                }
+                if block.trimmed:
+                    frame.sourceW = block.sourceW
+                    frame.sourceH = block.sourceH
+                    frame.trimX = block.trimX
+                    frame.trimY = block.trimY
+                else:
+                    frame.sourceW = block.frameW
+                    frame.sourceH = block.frameH
+                    frame.trimX = 0
+                    frame.trimY = 0
+                frames[name] = frame
+            continue
+        
         if line starts with 'P:':
             parts = line[2:].split(',')
             pages.push({
@@ -394,50 +433,16 @@ function decodePCT(text):
         else if line starts with 'A:':
             // Parse alias
             eqIdx = line.indexOf('=', 2)
-            originalName = resolveFullName(line[2:eqIdx], folders, EXT)
+            originalName = resolveFullName(line[2:eqIdx], folders, EXT, '')
             dupNames = expandNames(line[eqIdx+1:], folders, EXT)
             for name in dupNames:
                 frames[name] = copy(frames[originalName])
                 frames[name].key = name
         
-        else if pendingBlock is not null:
-            // This line is the names for the pending block
-            block = pendingBlock
-            pendingBlock = null
-            padding = pages[block.page].padding
-            cellW = block.frameW + padding * 2
-            cellH = block.frameH + padding * 2
-            names = expandNames(line, folders, EXT)
-            
-            for i, name in enumerate(names):
-                col = i % block.cols
-                row = floor(i / block.cols)
-                frame = {
-                    key: name,
-                    page: block.page,
-                    x: block.x + col * cellW + padding,
-                    y: block.y + row * cellH + padding,
-                    w: block.frameW,
-                    h: block.frameH,
-                    trimmed: block.trimmed,
-                    rotated: false
-                }
-                if block.trimmed:
-                    frame.sourceW = block.sourceW
-                    frame.sourceH = block.sourceH
-                    frame.trimX = block.trimX
-                    frame.trimY = block.trimY
-                else:
-                    frame.sourceW = block.frameW
-                    frame.sourceH = block.frameH
-                    frame.trimX = 0
-                    frame.trimY = 0
-                frames[name] = frame
-        
         else:
             // Individual frame line
             parts = line.split('|')
-            name = resolveFullName(parts[0], folders, EXT)
+            name = resolveFullName(parts[0], folders, EXT, '')
             flags = int(parts[1])
             trimmed = (flags & 2) != 0
             fv = parts[2].split(',')
@@ -452,12 +457,11 @@ function decodePCT(text):
                 rotated: (flags & 1) != 0
             }
             if trimmed:
-                sv = parts[3].split(',')
-                tv = parts[4].split(',')
-                frame.sourceW = int(sv[0])
-                frame.sourceH = int(sv[1])
-                frame.trimX = int(tv[0])
-                frame.trimY = int(tv[1])
+                tv = parts[3].split(',')
+                frame.sourceW = int(tv[0])
+                frame.sourceH = int(tv[1])
+                frame.trimX = int(tv[2])
+                frame.trimY = int(tv[3])
             else:
                 frame.sourceW = frame.w
                 frame.sourceH = frame.h
@@ -541,6 +545,7 @@ function resolveFullName(raw, folders, EXT, extSuffix):
 Eight 64×64 untrimmed sprites packed into a single row.
 
 ```
+PCT:1.0
 P:atlas_0.png,RGBA8888,1024,256,2
 B:2,2,8,64,64
 frame#1-8
@@ -569,6 +574,7 @@ Cell width = 64 + 2×2 = 68. Position = blockX + col × 68 + 2.
 Two atlas pages, three folders, trimmed blocks, individual frames, extension indices, range compression, and aliases.
 
 ```
+PCT:1.0
 P:atlas_0.png,RGBA8888,2048,512,2
 P:atlas_1.png,RGBA8888,2048,256,2
 F:warrior
@@ -576,16 +582,16 @@ F:knight
 F:effects
 #0
 B:2,2,6,120,108|134,120,4,6
-0/idle#01-24
+0/idle_#01-24~1
 B:2,222,6,120,108|134,120,4,6
-1/idle#01-18
+1/idle_#01-18~1
 sword~1|0|726,2,86,42
 shield~1|2|726,48,72,68|80,80,4,6
 #1
 B:2,2,10,48,48
-2/spark#01-30
-A:0/idle_01=0/idle_12,0/idle_18
-A:1/idle_01=1/idle_09
+2/spark_#01-30~1
+A:0/idle_01~1=0/idle_12,0/idle_18~1
+A:1/idle_01~1=1/idle_09~1
 ```
 
 Decoded:
@@ -606,8 +612,8 @@ Decoded:
 - Block at (2,2): 10 columns of 48×48 untrimmed frames. Names: `effects/spark_01.png` through `effects/spark_30.png`
 
 **Aliases:**
-- `warrior/idle_12` and `warrior/idle_18` are pixel-identical to `warrior/idle_01` — they share its atlas position
-- `knight/idle_09` is pixel-identical to `knight/idle_01`
+- `warrior/idle_12.png` and `warrior/idle_18.png` are pixel-identical to `warrior/idle_01.png` — they share its atlas position
+- `knight/idle_09.png` is pixel-identical to `knight/idle_01.png`
 
 
 ### Example 3: Minimal
@@ -615,6 +621,7 @@ Decoded:
 Single untrimmed sprite, no folders, no blocks.
 
 ```
+PCT:1.0
 P:atlas_0.png,RGBA8888,256,256,1
 logo|0|1,1,200,180
 ```
