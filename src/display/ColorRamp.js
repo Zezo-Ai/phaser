@@ -35,7 +35,7 @@ var getTint = Utils.getTintFromFloats;
  * @constructor
  *
  * @param {Phaser.Scene} scene - The current scene.
- * @param {Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand | (Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand)[]} bands - The bands which make up this ramp. This can be one entry or an array, and can be configs or existing instances. A band count over 1048576 may be unsafe.
+ * @param {Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand | Array<Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand>} bands - The bands which make up this ramp. This can be one entry or an array, and can be configs or existing instances. A band count over 1048576 may be unsafe.
  * @param {boolean} [gpuEncode=true] - Whether to create a data texture to use this ramp in shaders.
  */
 var ColorRamp = new Class({
@@ -144,7 +144,7 @@ var ColorRamp = new Class({
      * @method Phaser.Display.ColorRamp#setBands
      * @since 4.0.0
      *
-     * @param {Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand | (Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand)[]} bands - The bands to make up this ramp. This can be one entry or an array, and can be configs or existing instances.
+     * @param {Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand | Array<Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand>} bands - The bands to make up this ramp. This can be one entry or an array, and can be configs or existing instances.
      * @param {boolean} [encode=true] - Whether to encode the new ramp data to a data texture for use in shaders.
      *
      * @return {this} - This ColorRamp instance.
