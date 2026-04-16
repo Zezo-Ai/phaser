@@ -53,3 +53,11 @@ export const LEFT = CONST.LEFT;
 export const RIGHT = CONST.RIGHT;
 export const UP = CONST.UP;
 export const DOWN = CONST.DOWN;
+
+export default {
+    Actions, Animations, BlendModes, Cache, Cameras, Core, Curves, Data,
+    Display, DOM, Events, Filters, Game, GameObjects, Geom, Input, Loader,
+    Math, Physics, Plugins, Renderer, Scale, ScaleModes, Scene, Scenes,
+    Structs, Sound, Textures, Tilemaps, Time, TintModes, Tweens, Utils,
+    VERSION, AUTO, CANVAS, WEBGL, HEADLESS, FOREVER, NONE, LEFT, RIGHT, UP, DOWN
+};
